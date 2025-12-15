@@ -28,7 +28,9 @@ class PageController extends Controller
 
     public function berita()
     {
-        return view('berita');
+        $featured = \App\Models\Post::latest()->first();
+        $posts = \App\Models\Post::latest()->where('id', '!=', $featured?->id)->paginate(9);
+        return view('berita', compact('featured', 'posts'));
     }
 
     public function kontak()
