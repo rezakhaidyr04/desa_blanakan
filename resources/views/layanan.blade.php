@@ -20,9 +20,9 @@
                 </li>
             </ol>
         </nav>
-        <h1 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">Layanan Publik</h1>
+        <h1 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">Layanan Administrasi Desa</h1>
         <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Informasi persyaratan dan prosedur pengurusan dokumen administrasi kependudukan di Kantor Desa Blanakan.
+            Kami siap membantu Anda mengurus berbagai dokumen kependudukan. Berikut panduan lengkap persyaratan dan prosedur yang perlu Anda ketahui.
         </p>
     </div>
 </div>

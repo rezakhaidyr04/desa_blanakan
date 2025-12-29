@@ -23,7 +23,7 @@
             </nav>
             <h1 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">Hubungi Kami</h1>
             <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                Kritik, saran, dan aspirasi Anda sangat berarti bagi kemajuan Desa Blanakan.
+                Kami selalu terbuka untuk mendengar suara Anda. Sampaikan pertanyaan, saran, atau aspirasi Anda — kami siap membantu dengan sepenuh hati.
             </p>
         </div>
 
@@ -113,7 +113,7 @@
             <!-- Form -->
             <div class="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-100">
                 <h3 class="text-2xl font-bold text-slate-900 mb-2">Kirim Pesan</h3>
-                <p class="text-slate-500 mb-8">Silakan isi formulir di bawah ini untuk mengirimkan pesan langsung ke admin desa.</p>
+                <p class="text-slate-500 mb-8">Ada pertanyaan atau masukan? Isi formulir di bawah ini dan tim kami akan segera merespons pesan Anda.</p>
                 
                 @if(session('success'))
                     <div class="mb-6 p-4 bg-teal-50 border border-teal-200 text-teal-800 rounded-xl flex items-start gap-3">

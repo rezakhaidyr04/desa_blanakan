@@ -22,14 +22,14 @@
         <!-- Hero Text -->
         <div class="md:w-7/12 text-left z-10">
             <span class="inline-block py-1 px-3 rounded-full bg-teal-800/50 border border-teal-700 text-teal-300 text-sm font-semibold mb-6 backdrop-blur-sm animate-fade-in-up">
-                Selamat Datang di Portal Resmi
+                🌊 Portal Resmi Pemerintah Desa
             </span>
             <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight animate-fade-in-up" style="animation-delay: 0.1s">
                 Desa <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">Blanakan</span>
                 <br>Kabupaten Subang
             </h1>
             <p class="mt-4 max-w-2xl text-lg md:text-xl text-teal-100 mb-10 leading-relaxed font-light animate-fade-in-up" style="animation-delay: 0.2s">
-                Pusat informasi pelayanan publik dan potensi desa. Menuju desa mandiri, inovatif, dan sejahtera berbasis maritim dan agrikultur.
+                Selamat datang di desa pesisir yang kaya akan hasil laut, sawah yang subur, dan budaya yang hangat. Kami hadir untuk melayani Anda dengan sepenuh hati.
             </p>
             <div class="flex gap-4 flex-col sm:flex-row animate-fade-in-up" style="animation-delay: 0.3s">
                 <a href="{{ route('layanan') }}" class="px-8 py-4 bg-teal-500 hover:bg-teal-400 text-white rounded-xl font-bold transition-all shadow-lg hover:shadow-teal-500/50 text-center">
@@ -52,9 +52,9 @@
 <div class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold text-slate-900 mb-4">Fitur Utama</h2>
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">Layanan Kami untuk Anda</h2>
             <div class="w-20 h-1.5 bg-teal-500 mx-auto rounded-full"></div>
-            <p class="mt-4 text-slate-600 max-w-2xl mx-auto">Akses mudah ke berbagai informasi dan layanan desa untuk kemudahan masyarakat.</p>
+            <p class="mt-4 text-slate-600 max-w-2xl mx-auto">Kami berkomitmen memberikan pelayanan terbaik untuk seluruh warga. Temukan informasi yang Anda butuhkan dengan mudah dan cepat.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -65,7 +65,7 @@
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                 </div>
                 <h3 class="text-xl font-bold text-slate-900 mb-3">Layanan Administrasi</h3>
-                <p class="text-slate-600 leading-relaxed mb-6">Pengurusan dokumen kependudukan seperti KTP, KK, dan Surat Pengantar kini lebih informatif.</p>
+                <p class="text-slate-600 leading-relaxed mb-6">Urus dokumen kependudukan dengan mudah! KTP, KK, Akta, dan surat pengantar lainnya — semua prosedur kami jelaskan dengan lengkap.</p>
                 <a href="{{ route('layanan') }}" class="inline-flex items-center text-teal-600 font-semibold group-hover:translate-x-1 transition-transform">
                     Lihat Prosedur <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a>
@@ -78,7 +78,7 @@
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
                 <h3 class="text-xl font-bold text-slate-900 mb-3">Potensi Desa</h3>
-                <p class="text-slate-600 leading-relaxed mb-6">Menjelajahi keunggulan ekonomi dan wisata desa, dari penangkaran buaya hingga hasil laut.</p>
+                <p class="text-slate-600 leading-relaxed mb-6">Jelajahi kekayaan Blanakan! Dari wisata Penangkaran Buaya, TPI yang ramai, hingga kuliner laut yang menggugah selera.</p>
                 <a href="{{ route('potensi') }}" class="inline-flex items-center text-orange-600 font-semibold group-hover:translate-x-1 transition-transform">
                     Jelajahi <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a>
@@ -90,8 +90,8 @@
                 <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 mb-6 group-hover:scale-110 transition-transform">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
                 </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Berita Terkini</h3>
-                <p class="text-slate-600 leading-relaxed mb-6">Informasi terbaru seputar kegiatan desa, pembangunan, dan pengumuman penting.</p>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Berita & Pengumuman</h3>
+                <p class="text-slate-600 leading-relaxed mb-6">Tetap terhubung dengan kabar terbaru desa — kegiatan warga, program pembangunan, dan info penting lainnya.</p>
                 <a href="{{ route('berita') }}" class="inline-flex items-center text-blue-600 font-semibold group-hover:translate-x-1 transition-transform">
                     Baca Berita <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a>
@@ -132,9 +132,9 @@
 <div class="py-20 bg-slate-50 border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold text-slate-900 mb-4">Peta Wilayah</h2>
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">Temukan Lokasi Kami</h2>
             <div class="w-20 h-1.5 bg-teal-500 mx-auto rounded-full"></div>
-            <p class="mt-4 text-slate-600 max-w-2xl mx-auto">Lokasi strategis Desa Blanakan di pesisir utara Kabupaten Subang.</p>
+            <p class="mt-4 text-slate-600 max-w-2xl mx-auto">Desa Blanakan terletak di pesisir utara Kabupaten Subang, berbatasan langsung dengan Laut Jawa. Mudah dijangkau dan kaya akan destinasi menarik.</p>
         </div>
         
         <div id="map" class="shadow-2xl border-4 border-white"></div>

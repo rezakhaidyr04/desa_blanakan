@@ -25,9 +25,9 @@
                 </li>
             </ol>
         </nav>
-        <h1 class="text-3xl md:text-5xl font-bold text-white mb-6">Potensi Desa</h1>
+        <h1 class="text-3xl md:text-5xl font-bold text-white mb-6">Potensi Unggulan Desa</h1>
         <p class="text-xl text-teal-100 max-w-3xl mx-auto leading-relaxed">
-            Menjelajahi kekayaan alam dan ekonomi unggulan yang menjadi nadi kehidupan Desa Blanakan.
+            Blanakan dianugerahi kekayaan alam yang luar biasa. Mari jelajahi berbagai potensi yang menjadi kebanggaan dan penopang kehidupan warga kami.
         </p>
     </div>
 </div>
@@ -49,7 +49,7 @@
                 </div>
                 <h3 class="text-2xl font-bold text-slate-900 mb-3">Penangkaran Buaya Blanakan</h3>
                 <p class="text-slate-600 mb-6 line-clamp-3">
-                    Objek wisata unggulan yang dikelola oleh Perhutani. Menawarkan edukasi dan pengalaman unik melihat habitat buaya muara di ekosistem mangrove yang asri.
+                    Destinasi wisata edukasi unggulan yang dikelola Perhutani. Nikmati pengalaman seru menyaksikan habitat buaya muara di tengah hutan mangrove yang asri dan sejuk.
                 </p>
                 <a href="#" class="text-teal-600 font-semibold hover:text-teal-800 flex items-center">
                     Selengkapnya <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
@@ -68,9 +68,9 @@
                 <div class="mb-4">
                     <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-wide">Ekonomi</span>
                 </div>
-                <h3 class="text-2xl font-bold text-slate-900 mb-3">Tempat Pelelangan Ikan</h3>
+                <h3 class="text-2xl font-bold text-slate-900 mb-3">Tempat Pelelangan Ikan (TPI)</h3>
                 <p class="text-slate-600 mb-6 line-clamp-3">
-                    Pusat aktivitas ekonomi nelayan. Menyediakan hasil laut segar berkualitas dan menjadi penggerak utama roda perekonomian masyarakat pesisir Blanakan.
+                    Jantung ekonomi Blanakan! Setiap pagi, TPI ramai dengan aktivitas nelayan melelang hasil tangkapan segar. Ikan, udang, cumi, dan hasil laut berkualitas tersedia di sini.
                 </p>
                 <a href="#" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center">
                     Selengkapnya <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
@@ -91,7 +91,7 @@
                 </div>
                 <h3 class="text-2xl font-bold text-slate-900 mb-3">Pertanian & Tambak</h3>
                 <p class="text-slate-600 mb-6 line-clamp-3">
-                    Hamparan sawah dan tambak ikan bandeng/udang yang luas, menopang ketahanan pangan desa dan memasok kebutuhan pasar regional.
+                    Sawah yang menghijau dan tambak bandeng serta udang yang luas menjadi pemandangan khas Blanakan. Hasil panen melimpah, menyuplai kebutuhan pangan daerah sekitar.
                 </p>
                 <a href="#" class="text-green-600 font-semibold hover:text-green-800 flex items-center">
                     Selengkapnya <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
@@ -110,9 +110,9 @@
                 <div class="mb-4">
                     <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-bold uppercase tracking-wide">UMKM</span>
                 </div>
-                <h3 class="text-2xl font-bold text-slate-900 mb-3">Olahan Hasil Laut</h3>
+                <h3 class="text-2xl font-bold text-slate-900 mb-3">Olahan Hasil Laut Khas</h3>
                 <p class="text-slate-600 mb-6 line-clamp-3">
-                    Berbagai produk olahan ikan asin, kerupuk, dan terasi khas Blanakan yang diproduksi oleh industri rumah tangga lokal dengan cita rasa otentik.
+                    Cicipi kelezatan ikan asin premium, kerupuk udang renyah, dan terasi Blanakan yang legendaris — produk UMKM lokal dengan cita rasa otentik pesisir yang tak terlupakan.
                 </p>
                 <a href="#" class="text-orange-600 font-semibold hover:text-orange-800 flex items-center">
                     Selengkapnya <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>

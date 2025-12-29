@@ -22,9 +22,9 @@
             </ol>
         </nav>
         
-        <h1 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">Profil Desa</h1>
+        <h1 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">Profil Desa Blanakan</h1>
         <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Menelusuri jejak sejarah, visi, dan semangat Desa Blanakan dalam membangun masyarakat yang maju dan sejahtera.
+            Mengenal lebih dekat Desa Blanakan — sejarah yang kaya, visi yang kuat, dan tekad untuk membangun masa depan yang lebih baik bagi seluruh warga.
         </p>
     </div>
 </div>
@@ -35,13 +35,16 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
                 <span class="text-teal-600 font-semibold tracking-wide uppercase text-sm">Sejarah Kami</span>
-                <h2 class="text-3xl font-bold text-slate-900 mt-2 mb-6">Asal Usul Blanakan</h2>
+                <h2 class="text-3xl font-bold text-slate-900 mt-2 mb-6">Jejak Langkah Desa Blanakan</h2>
                 <div class="prose prose-slate text-slate-600 leading-relaxed">
                     <p class="mb-4">
-                        Desa Blanakan memiliki sejarah panjang sebagai salah satu pusat pesisir di Kabupaten Subang. Dengan letak geografis yang strategis di pesisir utara Jawa, Blanakan telah lama menjadi titik temu budaya maritim dan agrikultur.
+                        Desa Blanakan memiliki perjalanan sejarah yang panjang dan penuh makna. Terletak di pesisir utara Kabupaten Subang, desa ini telah menjadi saksi bisu pertemuan dua dunia — daratan dengan hamparan sawah yang hijau dan lautan dengan kekayaan hasil tangkapannya.
+                    </p>
+                    <p class="mb-4">
+                        Nama "Blanakan" konon berasal dari bahasa Sunda kuno yang bermakna tempat persinggahan atau perlindungan. Sejarah mencatat, kawasan ini sejak dahulu menjadi tempat berlabuh para nelayan dan pedagang yang melintas di perairan utara Jawa.
                     </p>
                     <p>
-                        Nama "Blanakan" sendiri dipercaya berasal dari sejarah lokal yang kaya, mencerminkan identitas masyarakat yang tangguh dan adaptif terhadap alam. Sejak berdiri, desa ini terus berkembang menjadi sentra perikanan dan pertanian yang vital bagi ekonomi daerah sekitarnya.
+                        Kini, Desa Blanakan tumbuh menjadi sentra perikanan dan pertanian yang vital bagi perekonomian daerah. Semangat gotong royong dan kearifan lokal tetap dijaga sebagai warisan leluhur yang tak ternilai harganya.
                     </p>
                 </div>
             </div>
@@ -76,7 +79,7 @@
                 </div>
                 <h3 class="text-2xl font-bold text-slate-900 mb-6">Visi</h3>
                 <p class="text-xl text-slate-600 italic font-medium leading-relaxed">
-                    "Terwujudnya Desa Blanakan yang Maju, Mandiri, Sejahtera, dan Berdaya Saing melalui Optimalisasi Potensi Kelautan dan Pertanian Berbasis Kearifan Lokal."
+                    "Mewujudkan Desa Blanakan sebagai desa maritim dan agraris yang MAJU dalam pembangunan, MANDIRI dalam ekonomi, SEJAHTERA dalam kehidupan masyarakat, dan BERBUDAYA dalam melestarikan kearifan lokal."
                 </p>
             </div>
 
@@ -88,19 +91,23 @@
                 <ul class="space-y-4">
                     <li class="flex items-start gap-3">
                         <div class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex flex-shrink-0 items-center justify-center text-sm font-bold mt-0.5">1</div>
-                        <span class="text-slate-600">Meningkatkan kualitas pelayanan publik yang transparan dan akuntabel.</span>
+                        <span class="text-slate-600">Memberikan pelayanan publik yang cepat, ramah, transparan, dan berbasis teknologi digital.</span>
                     </li>
                     <li class="flex items-start gap-3">
                         <div class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex flex-shrink-0 items-center justify-center text-sm font-bold mt-0.5">2</div>
-                        <span class="text-slate-600">Mengembangkan potensi ekonomi lokal melalui pemberdayaan UMKM dan koperasi.</span>
+                        <span class="text-slate-600">Mengoptimalkan potensi kelautan, perikanan, dan pertanian sebagai penggerak utama ekonomi desa.</span>
                     </li>
                     <li class="flex items-start gap-3">
                         <div class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex flex-shrink-0 items-center justify-center text-sm font-bold mt-0.5">3</div>
-                        <span class="text-slate-600">Mewujudkan infrastruktur desa yang memadai dan berkelanjutan.</span>
+                        <span class="text-slate-600">Meningkatkan kualitas SDM melalui pendidikan, pelatihan keterampilan, dan pemberdayaan masyarakat.</span>
                     </li>
                     <li class="flex items-start gap-3">
                         <div class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex flex-shrink-0 items-center justify-center text-sm font-bold mt-0.5">4</div>
-                        <span class="text-slate-600">Melestarikan budaya dan kearifan lokal sebagai identitas desa.</span>
+                        <span class="text-slate-600">Membangun infrastruktur yang berkualitas, merata, dan ramah lingkungan.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex flex-shrink-0 items-center justify-center text-sm font-bold mt-0.5">5</div>
+                        <span class="text-slate-600">Melestarikan nilai budaya, kearifan lokal, dan memperkuat kerukunan antar warga.</span>
                     </li>
                 </ul>
             </div>
