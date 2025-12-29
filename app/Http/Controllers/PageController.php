@@ -33,6 +33,17 @@ class PageController extends Controller
         return view('berita', compact('featured', 'posts'));
     }
 
+    public function beritaDetail($slug)
+    {
+        $post = \App\Models\Post::where('slug', $slug)->firstOrFail();
+        $relatedPosts = \App\Models\Post::where('id', '!=', $post->id)
+            ->where('category', $post->category)
+            ->latest()
+            ->take(3)
+            ->get();
+        return view('berita-detail', compact('post', 'relatedPosts'));
+    }
+
     public function kontak()
     {
         return view('kontak');
@@ -41,5 +52,30 @@ class PageController extends Controller
     public function galeri()
     {
         return view('galeri');
+    }
+
+    public function prosedurIndex()
+    {
+        return view('prosedur-index');
+    }
+
+    public function prosedurEktp()
+    {
+        return view('prosedur-ektp');
+    }
+
+    public function prosedurKk()
+    {
+        return view('prosedur-kk');
+    }
+
+    public function prosedurAkta()
+    {
+        return view('prosedur-akta');
+    }
+
+    public function prosedurSkck()
+    {
+        return view('prosedur-skck');
     }
 }

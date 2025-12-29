@@ -50,7 +50,7 @@
                     <span>Berusia 17 tahun ke atas</span>
                 </li>
             </ul>
-            <a href="#" class="block w-full py-3 bg-slate-50 text-teal-600 font-semibold text-center rounded-xl hover:bg-teal-50 transition-colors">Lihat Prosedur</a>
+            <a href="{{ route('prosedur-ektp') }}" class="block w-full py-3 bg-slate-50 text-teal-600 font-semibold text-center rounded-xl hover:bg-teal-50 transition-colors">Lihat Prosedur</a>
         </div>
 
         <!-- Card KK -->
@@ -73,7 +73,7 @@
                     <span>Buku Nikah / Akta Cerai</span>
                 </li>
             </ul>
-            <a href="#" class="block w-full py-3 bg-slate-50 text-blue-600 font-semibold text-center rounded-xl hover:bg-blue-50 transition-colors">Lihat Prosedur</a>
+            <a href="{{ route('prosedur-kk') }}" class="block w-full py-3 bg-slate-50 text-blue-600 font-semibold text-center rounded-xl hover:bg-blue-50 transition-colors">Lihat Prosedur</a>
         </div>
 
         <!-- Card Akta -->
@@ -96,7 +96,7 @@
                     <span>Buku Nikah Orang Tua</span>
                 </li>
             </ul>
-            <a href="#" class="block w-full py-3 bg-slate-50 text-pink-600 font-semibold text-center rounded-xl hover:bg-pink-50 transition-colors">Lihat Prosedur</a>
+            <a href="{{ route('prosedur-akta') }}" class="block w-full py-3 bg-slate-50 text-pink-600 font-semibold text-center rounded-xl hover:bg-pink-50 transition-colors">Lihat Prosedur</a>
         </div>
         
          <!-- Card SKCK -->
@@ -119,7 +119,7 @@
                     <span>Pas Foto 4x6 Background Merah</span>
                 </li>
             </ul>
-            <a href="#" class="block w-full py-3 bg-slate-50 text-purple-600 font-semibold text-center rounded-xl hover:bg-purple-50 transition-colors">Lihat Prosedur</a>
+            <a href="{{ route('prosedur-skck') }}" class="block w-full py-3 bg-slate-50 text-purple-600 font-semibold text-center rounded-xl hover:bg-purple-50 transition-colors">Lihat Prosedur</a>
         </div>
 
     </div>

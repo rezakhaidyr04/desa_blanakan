@@ -50,7 +50,7 @@
                 <p class="text-slate-200 text-lg line-clamp-2 max-w-4xl">
                     {{ $featured->excerpt }}
                 </p>
-                <a href="#" class="mt-6 text-white font-bold hover:text-teal-400 flex items-center gap-2 transition-colors">
+                <a href="{{ route('berita.detail', $featured->slug) }}" class="mt-6 text-white font-bold hover:text-teal-400 flex items-center gap-2 transition-colors">
                     Baca Selengkapnya <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                 </a>
             </div>
@@ -74,7 +74,7 @@
                 <p class="text-slate-600 text-sm line-clamp-3 mb-4">
                     {{ $post->excerpt }}
                 </p>
-                <a href="#" class="text-teal-600 font-semibold text-sm hover:underline">Baca Selengkapnya</a>
+                <a href="{{ route('berita.detail', $post->slug) }}" class="text-teal-600 font-semibold text-sm hover:underline">Baca Selengkapnya</a>
             </div>
         </div>
         @endforeach
