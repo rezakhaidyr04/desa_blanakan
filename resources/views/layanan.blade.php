@@ -50,7 +50,10 @@
                     <span>Berusia 17 tahun ke atas</span>
                 </li>
             </ul>
-            <a href="{{ route('prosedur-ektp') }}" class="block w-full py-3 bg-slate-50 text-teal-600 font-semibold text-center rounded-xl hover:bg-teal-50 transition-colors">Lihat Prosedur</a>
+            <div class="grid grid-cols-2 gap-2">
+                <a href="{{ route('layanan.ajukan', 'ektp') }}" class="py-3 bg-gradient-to-r from-teal-600 to-teal-500 text-white font-semibold text-center rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all text-sm">Ajukan</a>
+                <a href="{{ route('prosedur-ektp') }}" class="py-3 bg-slate-50 text-teal-600 font-semibold text-center rounded-xl hover:bg-teal-50 transition-colors text-sm">Prosedur</a>
+            </div>
         </div>
 
         <!-- Card KK -->
@@ -73,7 +76,10 @@
                     <span>Buku Nikah / Akta Cerai</span>
                 </li>
             </ul>
-            <a href="{{ route('prosedur-kk') }}" class="block w-full py-3 bg-slate-50 text-blue-600 font-semibold text-center rounded-xl hover:bg-blue-50 transition-colors">Lihat Prosedur</a>
+            <div class="grid grid-cols-2 gap-2">
+                <a href="{{ route('layanan.ajukan', 'kk') }}" class="py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold text-center rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all text-sm">Ajukan</a>
+                <a href="{{ route('prosedur-kk') }}" class="py-3 bg-slate-50 text-blue-600 font-semibold text-center rounded-xl hover:bg-blue-50 transition-colors text-sm">Prosedur</a>
+            </div>
         </div>
 
         <!-- Card Akta -->
@@ -96,7 +102,10 @@
                     <span>Buku Nikah Orang Tua</span>
                 </li>
             </ul>
-            <a href="{{ route('prosedur-akta') }}" class="block w-full py-3 bg-slate-50 text-pink-600 font-semibold text-center rounded-xl hover:bg-pink-50 transition-colors">Lihat Prosedur</a>
+            <div class="grid grid-cols-2 gap-2">
+                <a href="{{ route('layanan.ajukan', 'akta') }}" class="py-3 bg-gradient-to-r from-pink-600 to-pink-500 text-white font-semibold text-center rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all text-sm">Ajukan</a>
+                <a href="{{ route('prosedur-akta') }}" class="py-3 bg-slate-50 text-pink-600 font-semibold text-center rounded-xl hover:bg-pink-50 transition-colors text-sm">Prosedur</a>
+            </div>
         </div>
         
          <!-- Card SKCK -->
@@ -119,24 +128,35 @@
                     <span>Pas Foto 4x6 Background Merah</span>
                 </li>
             </ul>
-            <a href="{{ route('prosedur-skck') }}" class="block w-full py-3 bg-slate-50 text-purple-600 font-semibold text-center rounded-xl hover:bg-purple-50 transition-colors">Lihat Prosedur</a>
+            <div class="grid grid-cols-2 gap-2">
+                <a href="{{ route('layanan.ajukan', 'skck') }}" class="py-3 bg-gradient-to-r from-purple-600 to-purple-500 text-white font-semibold text-center rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all text-sm">Ajukan</a>
+                <a href="{{ route('prosedur-skck') }}" class="py-3 bg-slate-50 text-purple-600 font-semibold text-center rounded-xl hover:bg-purple-50 transition-colors text-sm">Prosedur</a>
+            </div>
         </div>
 
     </div>
     
-    <!-- Info Tambahan -->
-    <div class="mt-20 bg-slate-900 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
-         <div class="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-         <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+    <!-- CTA Section -->
+    <div class="mt-20 bg-gradient-to-br from-teal-600 to-teal-500 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
+         <div class="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-white rounded-full mix-blend-soft-light filter blur-3xl opacity-20"></div>
+         <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-64 h-64 bg-white rounded-full mix-blend-soft-light filter blur-3xl opacity-20"></div>
          
          <div class="relative z-10">
-            <h3 class="text-2xl font-bold mb-4">Butuh Bantuan Lain?</h3>
-            <p class="text-slate-300 max-w-2xl mx-auto mb-8">
-                Jika Anda memiliki pertanyaan mengenai persyaratan atau prosedur layanan lainnya yang tidak tercantum di atas, silakan hubungi perangkat desa kami.
+            <h3 class="text-2xl md:text-3xl font-bold mb-4">Sudah Mengajukan Layanan?</h3>
+            <p class="text-teal-50 max-w-2xl mx-auto mb-8">
+                Lacak status pengajuan layanan Anda dengan mudah menggunakan NIK.
             </p>
-            <a href="{{ route('kontak') }}" class="inline-block px-8 py-3 bg-teal-500 hover:bg-teal-600 text-white rounded-full font-bold transition-all shadow-lg hover:shadow-teal-500/50">
-                Hubungi Kami
-            </a>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ route('layanan.track') }}" class="inline-block px-8 py-3 bg-white text-teal-600 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                    <svg class="w-5 h-5 inline-block mr-2 -mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                    </svg>
+                    Lacak Status Pengajuan
+                </a>
+                <a href="{{ route('kontak') }}" class="inline-block px-8 py-3 bg-teal-700 text-white rounded-xl font-bold transition-all hover:bg-teal-800">
+                    Hubungi Kami
+                </a>
+            </div>
          </div>
     </div>
 </div>

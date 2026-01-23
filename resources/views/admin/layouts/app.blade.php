@@ -72,6 +72,15 @@
                     @endif
                 </a>
 
+                <a href="{{ route('admin.service-requests.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg {{ request()->routeIs('admin.service-requests.*') ? 'bg-teal-600 text-white' : 'text-slate-300 hover:bg-slate-700' }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9h.01M9 16h.01M12 12h6"></path></svg>
+                    Pengajuan Layanan
+                    @php $pendingServiceRequests = \App\Models\ServiceRequest::where('status', 'pending')->count(); @endphp
+                    @if($pendingServiceRequests > 0)
+                        <span class="bg-yellow-500 text-white text-xs px-2 py-0.5 rounded-full">{{ $pendingServiceRequests }}</span>
+                    @endif
+                </a>
+
                 <p class="px-4 pt-4 pb-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">Sistem</p>
 
                 <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg {{ request()->routeIs('admin.settings.*') ? 'bg-teal-600 text-white' : 'text-slate-300 hover:bg-slate-700' }}">

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\OfficialController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\ServiceRequestController;
 use App\Http\Controllers\Admin\PotentialController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SettingController;
@@ -44,6 +45,12 @@ Route::controller(App\Http\Controllers\PageController::class)->group(function ()
 // Contact Form Submission
 Route::post('/kontak', [App\Http\Controllers\ContactController::class, 'submit'])->name('kontak.submit');
 
+// Service Request Routes
+Route::get('/layanan/ajukan/{type}', [App\Http\Controllers\ServiceRequestController::class, 'create'])->name('layanan.ajukan');
+Route::post('/layanan/ajukan', [App\Http\Controllers\ServiceRequestController::class, 'store'])->name('layanan.store');
+Route::get('/layanan/track', [App\Http\Controllers\ServiceRequestController::class, 'track'])->name('layanan.track');
+Route::post('/layanan/check-status', [App\Http\Controllers\ServiceRequestController::class, 'checkStatus'])->name('layanan.check-status');
+
 // Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
     // Login routes (no middleware)
@@ -70,6 +77,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('messages/{message}', [MessageController::class, 'show'])->name('messages.show');
         Route::post('messages/{message}/reply', [MessageController::class, 'reply'])->name('messages.reply');
         Route::delete('messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+
+        // Service Requests (Pengajuan Layanan Online)
+        Route::resource('service-requests', ServiceRequestController::class)->only(['index', 'show', 'update']);
         
         // Settings
         Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
