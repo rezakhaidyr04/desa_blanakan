@@ -17,8 +17,10 @@ class AdminSeeder extends Seeder
             ['email' => 'admin@desablanakan.id'],
             [
                 'name' => 'Admin Desa',
+                'is_admin' => true,
                 'password' => Hash::make('admin123'),
             ]
         );
     }
 }
+

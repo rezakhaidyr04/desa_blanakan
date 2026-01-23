@@ -27,6 +27,17 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
+
+            if (!Auth::user()?->is_admin) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return back()->withErrors([
+                    'email' => 'Akun ini bukan admin.',
+                ])->onlyInput('email');
+            }
+
             return redirect()->intended(route('admin.dashboard'));
         }
 

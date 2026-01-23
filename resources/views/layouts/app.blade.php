@@ -84,6 +84,20 @@
                     <a href="{{ route('layanan') }}" class="text-sm font-medium transition-colors hover:text-teal-600 {{ request()->routeIs('layanan') ? 'text-teal-600' : 'text-slate-600' }}">Layanan</a>
                     <a href="{{ route('berita') }}" class="text-sm font-medium transition-colors hover:text-teal-600 {{ request()->routeIs('berita') ? 'text-teal-600' : 'text-slate-600' }}">Berita</a>
                     <a href="{{ route('galeri') }}" class="text-sm font-medium transition-colors hover:text-teal-600 {{ request()->routeIs('galeri') ? 'text-teal-600' : 'text-slate-600' }}">Galeri</a>
+
+                    @auth
+                        <span class="text-sm font-medium text-slate-700">{{ auth()->user()->name }}</span>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-full hover:bg-slate-200 transition-all">
+                                Keluar
+                            </button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm font-medium text-slate-600 hover:text-teal-600 transition-colors">Login</a>
+                        <a href="{{ route('register') }}" class="px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-full hover:bg-slate-200 transition-all">Daftar</a>
+                    @endauth
+
                     <a href="{{ route('kontak') }}" class="px-5 py-2.5 bg-teal-600 text-white text-sm font-medium rounded-full hover:bg-teal-700 transition-all shadow-lg shadow-teal-600/20 hover:shadow-teal-600/30">
                         Hubungi Kami
                     </a>
@@ -132,9 +146,22 @@
                 <a href="{{ route('berita') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('berita') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Berita</a>
                 <a href="{{ route('galeri') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('galeri') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Galeri</a>
                 <a href="{{ route('kontak') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('kontak') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Hubungi Kami</a>
+
+                @auth
+                    <div class="px-4 pt-2 text-xs text-slate-500">Masuk sebagai</div>
+                    <div class="px-4 pb-2 text-sm font-medium text-slate-800">{{ auth()->user()->name }}</div>
+                    <form method="POST" action="{{ route('logout') }}" class="px-4">
+                        @csrf
+                        <button type="submit" class="w-full px-4 py-3 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">Keluar</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50">Login</a>
+                    <a href="{{ route('register') }}" class="px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50">Daftar</a>
+                @endauth
             </div>
         </div>
     </nav>
+
 
     <!-- Main Content -->
     <main class="flex-grow pt-20">

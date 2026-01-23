@@ -9,6 +9,38 @@
 
 ## About Laravel
 
+## Desa Blanakan App
+
+### Setup Lokal (MySQL)
+
+- Pastikan MySQL berjalan (XAMPP/Laragon) dan database `desa_blanakan` sudah dibuat
+	- Laragon (opsional): `C:\laragon\laragon.exe start`
+- Copy env: `copy .env.example .env`
+- Generate key: `php artisan key:generate`
+- Migrasi + seed: `php artisan migrate:fresh --seed`
+- Jalankan server: `php artisan serve`
+
+Catatan: mode SQLite butuh ekstensi PHP `pdo_sqlite` aktif.
+
+### Admin Login (Local)
+
+- URL: `/admin/login`
+- Email: `admin@desablanakan.id`
+- Password: `admin123`
+
+Admin user dibuat oleh seeder: `Database\\Seeders\\AdminSeeder`.
+
+Jalankan seed (misalnya untuk local/dev):
+
+- `php artisan migrate:fresh --seed`
+
+Penting: ganti password admin untuk environment produksi.
+
+### User Login/Daftar
+
+- Login user: `/login`
+- Daftar user: `/daftar`
+
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).

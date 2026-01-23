@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ServiceRequestController;
 use App\Http\Controllers\Admin\PotentialController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\AuthController as UserAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,19 @@ Route::controller(App\Http\Controllers\PageController::class)->group(function ()
     Route::get('/prosedur/skck', 'prosedurSkck')->name('prosedur-skck');
 });
 
+// User Auth Routes
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [UserAuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [UserAuthController::class, 'login'])->name('login.submit');
+
+    Route::get('/daftar', [UserAuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/daftar', [UserAuthController::class, 'register'])->name('register.submit');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [UserAuthController::class, 'logout'])->name('logout');
+});
+
 // Contact Form Submission
 Route::post('/kontak', [App\Http\Controllers\ContactController::class, 'submit'])->name('kontak.submit');
 
@@ -57,8 +71,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
 
-    // Authenticated routes
-    Route::middleware('auth')->group(function () {
+    // Authenticated admin routes
+    Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         
@@ -86,3 +100,4 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
     });
 });
+
