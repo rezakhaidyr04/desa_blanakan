@@ -40,6 +40,48 @@
                     </div>
                 </div>
 
+                @php
+                    $status = $request->status;
+                    $steps = [
+                        ['key' => 'received', 'label' => 'Diterima'],
+                        ['key' => 'processing', 'label' => 'Diproses'],
+                        ['key' => 'completed', 'label' => 'Selesai'],
+                    ];
+
+                    $activeIndex = 0;
+                    if ($status === 'processing') $activeIndex = 1;
+                    if ($status === 'completed') $activeIndex = 2;
+                    if ($status === 'rejected') $activeIndex = 1;
+                @endphp
+
+                <div class="mt-5 rounded-2xl border border-slate-100 bg-slate-50/60 p-4">
+                    <div class="text-xs font-semibold text-slate-500 mb-3">Timeline</div>
+                    <div class="grid grid-cols-3 gap-2">
+                        @foreach ($steps as $i => $step)
+                            @php
+                                $isActive = $i <= $activeIndex && $status !== 'rejected';
+                                $isCurrent = $i === $activeIndex;
+                                $dotClass = $status === 'rejected'
+                                    ? ($i === 2 ? 'bg-slate-200' : 'bg-red-500')
+                                    : ($isActive ? 'bg-teal-600' : 'bg-slate-200');
+                                $textClass = $status === 'rejected'
+                                    ? ($i === 2 ? 'text-slate-400' : 'text-red-700')
+                                    : ($isActive ? 'text-slate-900' : 'text-slate-500');
+                            @endphp
+                            <div class="flex items-center gap-2">
+                                <span class="h-2.5 w-2.5 rounded-full {{ $dotClass }}"></span>
+                                <span class="text-sm font-semibold {{ $textClass }}">{{ $step['label'] }}</span>
+                                @if ($isCurrent && $status !== 'rejected')
+                                    <span class="ml-auto text-xs text-slate-500">sekarang</span>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                    @if ($status === 'rejected')
+                        <div class="mt-3 text-sm text-red-700 font-semibold">Pengajuan ditolak</div>
+                    @endif
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-4 border-t border-slate-100">
                     <div>
                         <p class="text-sm font-semibold text-slate-700 mb-1">Nama Pemohon</p>
@@ -113,7 +155,7 @@
                         </svg>
                         <div>
                             <p class="text-sm font-semibold text-yellow-900 mb-1">Menunggu Verifikasi</p>
-                            <p class="text-sm text-yellow-800">Pengajuan Anda telah diterima dan menunggu verifikasi dari petugas.</p>
+                            <p class="text-sm text-yellow-800">Pengajuan Anda sudah masuk sistem. Jika belum diproses, mohon tunggu sebentar.</p>
                         </div>
                     </div>
                 </div>

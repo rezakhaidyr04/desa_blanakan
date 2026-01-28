@@ -58,7 +58,7 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('login.submit') }}" class="space-y-4 mt-6">
+                        <form method="POST" action="{{ route('login.submit') }}" class="space-y-4 mt-6" data-loading-form>
                             @csrf
 
                             <div>
@@ -86,11 +86,11 @@
                                     <input type="checkbox" name="remember" class="rounded border-slate-300 text-teal-600 focus:ring-teal-500" />
                                     Ingat saya
                                 </label>
-                                <span class="text-xs text-slate-500">Admin & user pakai form yang sama</span>
                             </div>
 
-                            <button type="submit" class="w-full px-5 py-3 bg-teal-600 text-white text-sm font-semibold rounded-2xl hover:bg-teal-700 transition-all shadow-lg shadow-teal-600/20">
-                                Masuk
+                            <button type="submit" data-loading-submit class="w-full px-5 py-3 bg-teal-600 text-white text-sm font-semibold rounded-2xl hover:bg-teal-700 transition-all shadow-lg shadow-teal-600/20 inline-flex items-center justify-center gap-2">
+                                <svg data-loading-spinner class="hidden h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>
+                                <span>Masuk</span>
                             </button>
                         </form>
 

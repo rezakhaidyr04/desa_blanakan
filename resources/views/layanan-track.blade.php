@@ -10,7 +10,7 @@
 
 <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
-        <form action="{{ route('layanan.check-status') }}" method="POST" class="space-y-6">
+        <form action="{{ route('layanan.check-status') }}" method="POST" class="space-y-6" data-loading-form>
             @csrf
             
             <div>
@@ -23,12 +23,13 @@
                 @enderror
             </div>
 
-            <button type="submit"
-                class="w-full py-3 px-6 bg-gradient-to-r from-teal-600 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                <svg class="w-5 h-5 inline-block mr-2 -mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button type="submit" data-loading-submit
+                class="w-full py-3 px-6 bg-gradient-to-r from-teal-600 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all inline-flex items-center justify-center gap-2">
+                <svg data-loading-spinner class="hidden h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
-                Cek Status
+                <span>Cek Status</span>
             </button>
         </form>
 

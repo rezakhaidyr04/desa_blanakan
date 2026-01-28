@@ -18,6 +18,8 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen">
 
+    <x-flash-toasts />
+
     @yield('content')
 
 </body>

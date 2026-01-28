@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\PotentialController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\AuthController as UserAuthController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserSettingController;
 
 /*
@@ -43,6 +44,9 @@ Route::controller(App\Http\Controllers\PageController::class)->group(function ()
     Route::get('/prosedur/akta', 'prosedurAkta')->name('prosedur-akta');
     Route::get('/prosedur/skck', 'prosedurSkck')->name('prosedur-skck');
 });
+
+// Global search (JSON)
+Route::get('/search', SearchController::class)->name('search');
 
 // User Auth Routes
 Route::middleware('guest')->group(function () {

@@ -122,7 +122,7 @@
                     </div>
                 @endif
                 
-                <form action="{{ route('kontak.submit') }}" method="POST" class="space-y-6">
+                <form action="{{ route('kontak.submit') }}" method="POST" class="space-y-6" data-loading-form>
                     @csrf
                     <div>
                         <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Nama Lengkap</label>
@@ -161,8 +161,9 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="w-full py-4 bg-teal-600 text-white font-bold rounded-xl shadow-lg shadow-teal-600/20 hover:bg-teal-700 hover:shadow-teal-600/40 transition-all transform hover:-translate-y-1">
-                        Kirim Pesan
+                    <button type="submit" data-loading-submit class="w-full py-4 bg-teal-600 text-white font-bold rounded-xl shadow-lg shadow-teal-600/20 hover:bg-teal-700 hover:shadow-teal-600/40 transition-all transform hover:-translate-y-1 inline-flex items-center justify-center gap-2">
+                        <svg data-loading-spinner class="hidden h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>
+                        <span>Kirim Pesan</span>
                     </button>
                 </form>
             </div>
