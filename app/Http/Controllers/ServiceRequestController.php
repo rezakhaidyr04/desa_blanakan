@@ -83,6 +83,9 @@ class ServiceRequestController extends Controller
 
         $validated['documents'] = $documents;
 
+        // Auto-approve: langsung masuk tahap diproses (tanpa menunggu persetujuan admin)
+        $validated['status'] = 'processing';
+
         ServiceRequest::create($validated);
 
         return redirect()->route('layanan')->with('success', 'Pengajuan layanan berhasil dikirim! Kami akan segera memprosesnya.');

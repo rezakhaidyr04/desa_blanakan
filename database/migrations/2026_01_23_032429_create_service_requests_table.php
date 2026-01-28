@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('purpose')->nullable(); // untuk SKCK
             $table->json('documents')->nullable(); // menyimpan path dokumen yang diupload
             $table->text('notes')->nullable();
-            $table->enum('status', ['pending', 'processing', 'completed', 'rejected'])->default('pending');
+            $table->enum('status', ['pending', 'processing', 'completed', 'rejected'])->default('processing');
             $table->text('admin_notes')->nullable();
             $table->timestamp('processed_at')->nullable();
             $table->timestamps();

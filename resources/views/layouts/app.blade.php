@@ -86,6 +86,9 @@
                     <a href="{{ route('galeri') }}" class="text-sm font-medium transition-colors hover:text-teal-600 {{ request()->routeIs('galeri') ? 'text-teal-600' : 'text-slate-600' }}">Galeri</a>
 
                     @auth
+                        <a href="{{ auth()->user()->is_admin ? route('admin.settings.index') : route('user.settings') }}" class="text-sm font-medium text-slate-600 hover:text-teal-600 transition-colors">
+                            Setelan
+                        </a>
                         <span class="text-sm font-medium text-slate-700">{{ auth()->user()->name }}</span>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -150,6 +153,9 @@
                 @auth
                     <div class="px-4 pt-2 text-xs text-slate-500">Masuk sebagai</div>
                     <div class="px-4 pb-2 text-sm font-medium text-slate-800">{{ auth()->user()->name }}</div>
+                    <a href="{{ auth()->user()->is_admin ? route('admin.settings.index') : route('user.settings') }}" class="px-4 py-3 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-50">
+                        Setelan
+                    </a>
                     <form method="POST" action="{{ route('logout') }}" class="px-4">
                         @csrf
                         <button type="submit" class="w-full px-4 py-3 rounded-xl text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">Keluar</button>
@@ -237,13 +243,6 @@
                     &copy; 2024 Pemerintah Desa Blanakan. All rights reserved.
                 </div>
 
-                <!-- Admin Login Link -->
-                <div class="text-center mt-4">
-                    <a href="/admin/login" class="inline-flex items-center gap-2 text-xs text-slate-500 hover:text-teal-400 transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        Admin Login
-                    </a>
-                </div>
             </div>
         </div>
     </footer>

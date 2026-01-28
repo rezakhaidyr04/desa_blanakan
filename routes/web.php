@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\PotentialController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\AuthController as UserAuthController;
+use App\Http\Controllers\UserSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,10 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [UserAuthController::class, 'logout'])->name('logout');
+
+    // User Settings
+    Route::get('/setelan', [UserSettingController::class, 'index'])->name('user.settings');
+    Route::put('/setelan', [UserSettingController::class, 'update'])->name('user.settings.update');
 });
 
 // Contact Form Submission
@@ -67,9 +72,9 @@ Route::post('/layanan/check-status', [App\Http\Controllers\ServiceRequestControl
 
 // Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
-    // Login routes (no middleware)
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
+    // Legacy admin login (redirect to unified user login)
+    Route::get('/login', fn () => redirect()->route('login'))->name('login');
+    Route::post('/login', [UserAuthController::class, 'login']);
 
     // Authenticated admin routes
     Route::middleware(['auth', 'admin'])->group(function () {
