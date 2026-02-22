@@ -6,7 +6,9 @@
     <!-- Clean Background Image -->
     <div class="absolute inset-0 z-0">
         <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-teal-900/40 to-slate-900 z-10"></div>
-        <img src="https://images.unsplash.com/photo-1544551763-77ef620b7274?auto=format&fit=crop&q=80" alt="Pantai Blanakan" class="w-full h-full object-cover opacity-30 transform scale-105 animate-pulse-slow">
+        @php $heroImg = $sliders->first(); @endphp
+        <img src="{{ $heroImg ? (\Illuminate\Support\Str::startsWith($heroImg->image, 'http') ? $heroImg->image : asset('storage/' . $heroImg->image)) : 'https://images.unsplash.com/photo-1544551763-77ef620b7274?auto=format&fit=crop&q=80' }}"
+             alt="Pantai Blanakan" class="w-full h-full object-cover opacity-30 transform scale-105 animate-pulse-slow">
     </div>
     
     <!-- Particles Canvas -->

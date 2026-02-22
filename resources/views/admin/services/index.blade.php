@@ -31,7 +31,7 @@
                             <p class="text-sm text-slate-500 truncate max-w-xs">{{ $service->description }}</p>
                         @endif
                     </td>
-                    <td class="px-6 py-4 text-slate-600">{{ $service->processing_time ?? '-' }}</td>
+                    <td class="px-6 py-4 text-slate-600">{{ $service->duration ?? '-' }}</td>
                     <td class="px-6 py-4 text-slate-600">{{ $service->cost }}</td>
                     <td class="px-6 py-4">
                         @if($service->is_active)

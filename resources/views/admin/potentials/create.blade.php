@@ -14,8 +14,8 @@
             @csrf
             
             <div>
-                <label for="title" class="block text-sm font-medium text-slate-700 mb-2">Nama Potensi *</label>
-                <input type="text" id="title" name="title" value="{{ old('title') }}" required
+                <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Nama Potensi *</label>
+                <input type="text" id="name" name="name" value="{{ old('name') }}" required
                     class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     placeholder="Contoh: Pertanian Padi Organik">
             </div>
@@ -26,11 +26,9 @@
                     class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
                     <option value="pertanian">🌾 Pertanian</option>
                     <option value="perikanan">🐟 Perikanan</option>
-                    <option value="peternakan">🐄 Peternakan</option>
                     <option value="umkm">🏪 UMKM</option>
                     <option value="wisata">🏖️ Wisata</option>
                     <option value="kerajinan">🎨 Kerajinan</option>
-                    <option value="kuliner">🍽️ Kuliner</option>
                     <option value="lainnya">📦 Lainnya</option>
                 </select>
             </div>
@@ -47,13 +45,6 @@
                 <textarea id="description" name="description" rows="4" required
                     class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     placeholder="Penjelasan tentang potensi ini...">{{ old('description') }}</textarea>
-            </div>
-
-            <div>
-                <label for="details" class="block text-sm font-medium text-slate-700 mb-2">Detail Tambahan</label>
-                <textarea id="details" name="details" rows="4"
-                    class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                    placeholder="Informasi detail lebih lanjut...">{{ old('details') }}</textarea>
             </div>
 
             <div class="grid grid-cols-2 gap-4">

@@ -27,7 +27,7 @@ class ServiceController extends Controller
             'icon' => 'required',
         ]);
 
-        $data = $request->only(['name', 'icon', 'description', 'requirements', 'procedures', 'processing_time', 'cost', 'order']);
+        $data = $request->only(['name', 'icon', 'description', 'requirements', 'procedure', 'duration', 'cost', 'order']);
         $data['slug'] = Str::slug($request->name);
         $data['is_active'] = $request->has('is_active');
         $data['order'] = $data['order'] ?? 0;
@@ -51,7 +51,7 @@ class ServiceController extends Controller
             'icon' => 'required',
         ]);
 
-        $data = $request->only(['name', 'icon', 'description', 'requirements', 'procedures', 'processing_time', 'cost', 'order']);
+        $data = $request->only(['name', 'icon', 'description', 'requirements', 'procedure', 'duration', 'cost', 'order']);
         $data['slug'] = Str::slug($request->name);
         $data['is_active'] = $request->has('is_active');
 

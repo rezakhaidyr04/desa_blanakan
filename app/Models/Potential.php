@@ -11,12 +11,11 @@ class Potential extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
+        'name',
         'slug',
         'category',
         'image',
         'description',
-        'details',
         'location',
         'contact',
         'order',
@@ -32,7 +31,7 @@ class Potential extends Model
         parent::boot();
         static::creating(function ($potential) {
             if (empty($potential->slug)) {
-                $potential->slug = Str::slug($potential->title);
+                $potential->slug = Str::slug($potential->name);
             }
         });
     }

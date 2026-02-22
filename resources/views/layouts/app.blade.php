@@ -51,64 +51,88 @@
         </div>
     </div>
 
-    <!-- Breaking News Ticker -->
-    <div class="fixed top-20 w-full z-40 bg-slate-900 text-white text-sm py-2 overflow-hidden shadow-md">
-        <div class="max-w-7xl mx-auto flex items-center px-4">
-            <span class="bg-red-600 px-2 py-0.5 rounded text-xs font-bold mr-3 animate-pulse">INFO TERKINI</span>
-            <div class="marquee-container flex-1">
-                <div class="marquee-content">
-                    🌊 Waspada gelombang tinggi di perairan utara Blanakan 2-3 hari ke depan. 📢 Penyaluran BLT Dana Desa Tahap 4 akan dilaksanakan tanggal 20 Desember di Balai Desa. 🐟 Harga ikan di TPI Blanakan stabil. 🚜 Program subsidi pupuk untuk kelompok tani mulai didistribusikan.
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Navbar -->
     <nav class="fixed w-full z-50 transition-all duration-300 glass-nav" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
+            <div class="flex justify-between h-16 items-center gap-6">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-3">
-                    <div class="w-10 h-10 bg-teal-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-teal-600/20">
-                        B
+                <a href="{{ route('home') }}" class="flex-shrink-0 flex items-center gap-2.5">
+                    <div class="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center text-white font-bold text-base shadow shadow-teal-600/30">B</div>
+                    <div class="leading-tight">
+                        <div class="text-base font-bold text-slate-900 tracking-tight">Desa Blanakan</div>
+                        <div class="text-[10px] text-teal-600 font-medium -mt-0.5">Kabupaten Subang</div>
                     </div>
-                    <div>
-                        <h1 class="text-xl font-bold text-slate-900 tracking-tight">Desa Blanakan</h1>
-                        <p class="text-xs text-teal-600 font-medium">Kabupaten Subang</p>
-                    </div>
-                </div>
+                </a>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="{{ route('home') }}" class="text-sm font-medium transition-colors hover:text-teal-600 {{ request()->routeIs('home') ? 'text-teal-600' : 'text-slate-600' }}">Beranda</a>
-                    <a href="{{ route('profil') }}" class="text-sm font-medium transition-colors hover:text-teal-600 {{ request()->routeIs('profil') ? 'text-teal-600' : 'text-slate-600' }}">Profil</a>
-                    <a href="{{ route('potensi') }}" class="text-sm font-medium transition-colors hover:text-teal-600 {{ request()->routeIs('potensi') ? 'text-teal-600' : 'text-slate-600' }}">Potensi</a>
-                    <a href="{{ route('layanan') }}" class="text-sm font-medium transition-colors hover:text-teal-600 {{ request()->routeIs('layanan') ? 'text-teal-600' : 'text-slate-600' }}">Layanan</a>
-                    <a href="{{ route('berita') }}" class="text-sm font-medium transition-colors hover:text-teal-600 {{ request()->routeIs('berita') ? 'text-teal-600' : 'text-slate-600' }}">Berita</a>
-                    <a href="{{ route('galeri') }}" class="text-sm font-medium transition-colors hover:text-teal-600 {{ request()->routeIs('galeri') ? 'text-teal-600' : 'text-slate-600' }}">Galeri</a>
+                <div class="hidden md:flex items-center gap-1">
+                    @php
+                        $navLinks = [
+                            ['route' => 'home',      'label' => 'Beranda'],
+                            ['route' => 'profil',    'label' => 'Profil'],
+                            ['route' => 'potensi',   'label' => 'Potensi'],
+                            ['route' => 'layanan',   'label' => 'Layanan'],
+                            ['route' => 'berita',    'label' => 'Berita'],
+                            ['route' => 'galeri',    'label' => 'Galeri'],
+                            ['route' => 'keuangan',  'label' => 'Keuangan'],
+                            ['route' => 'kontak',    'label' => 'Kontak'],
+                        ];
+                    @endphp
+                    @foreach($navLinks as $link)
+                        <a href="{{ route($link['route']) }}"
+                           class="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors
+                                  {{ request()->routeIs($link['route']) ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:text-teal-600 hover:bg-slate-50' }}">
+                            {{ $link['label'] }}
+                        </a>
+                    @endforeach
+                </div>
+
+                <!-- Right Actions -->
+                <div class="hidden md:flex items-center gap-2 flex-shrink-0">
+                    <!-- Search -->
+                    <button id="search-toggle" class="p-2 rounded-lg text-slate-500 hover:text-teal-600 hover:bg-slate-100 transition-colors" title="Cari">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
 
                     @auth
-                        <a href="{{ auth()->user()->is_admin ? route('admin.settings.index') : route('user.settings') }}" class="text-sm font-medium text-slate-600 hover:text-teal-600 transition-colors">
-                            Setelan
-                        </a>
-                        <span class="text-sm font-medium text-slate-700">{{ auth()->user()->name }}</span>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-full hover:bg-slate-200 transition-all">
-                                Keluar
+                        <!-- User dropdown -->
+                        <div class="relative" x-data="{ open: false }">
+                            <button @click="open = !open" @click.away="open = false"
+                                class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100 transition-colors">
+                                <div class="w-6 h-6 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center text-xs font-bold">
+                                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                                </div>
+                                <span class="max-w-[80px] truncate">{{ auth()->user()->name }}</span>
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                             </button>
-                        </form>
+                            <div x-show="open" x-transition
+                                 class="absolute right-0 mt-1 w-44 bg-white rounded-xl shadow-xl border border-slate-100 py-1 z-50">
+                                <a href="{{ auth()->user()->is_admin ? route('admin.settings.index') : route('user.settings') }}"
+                                   class="flex items-center gap-2 px-4 py-2 text-sm text-slate-600 hover:bg-slate-50">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
+                                    Setelan
+                                </a>
+                                @if(auth()->user()->is_admin)
+                                <a href="{{ route('admin.dashboard') }}"
+                                   class="flex items-center gap-2 px-4 py-2 text-sm text-slate-600 hover:bg-slate-50">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+                                    Dashboard Admin
+                                </a>
+                                @endif
+                                <div class="border-t border-slate-100 my-1"></div>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-500 hover:bg-red-50">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                                        Keluar
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm font-medium text-slate-600 hover:text-teal-600 transition-colors">Login</a>
+                        <a href="{{ route('login') }}" class="px-3 py-1.5 text-sm font-medium text-slate-600 hover:text-teal-600 transition-colors">Masuk</a>
+                        <a href="{{ route('register') }}" class="px-4 py-1.5 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700 transition-all shadow shadow-teal-600/20">Daftar</a>
                     @endauth
-
-                    <a href="{{ route('kontak') }}" class="px-5 py-2.5 bg-teal-600 text-white text-sm font-medium rounded-full hover:bg-teal-700 transition-all shadow-lg shadow-teal-600/20 hover:shadow-teal-600/30">
-                        Hubungi Kami
-                    </a>
-                    <!-- Search Button -->
-                    <button id="search-toggle" class="p-2 text-slate-500 hover:text-teal-600 transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </button>
                 </div>
 
     <!-- Search Modal -->
@@ -157,6 +181,7 @@
                 <a href="{{ route('layanan') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('layanan') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Layanan</a>
                 <a href="{{ route('berita') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('berita') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Berita</a>
                 <a href="{{ route('galeri') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('galeri') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Galeri</a>
+                <a href="{{ route('keuangan') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('keuangan') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Keuangan</a>
                 <a href="{{ route('kontak') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('kontak') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Hubungi Kami</a>
 
                 @auth
@@ -178,7 +203,7 @@
 
 
     <!-- Main Content -->
-    <main class="flex-grow pt-20">
+    <main class="flex-grow pt-16">
         @yield('content')
     </main>
 
@@ -261,6 +286,9 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
         </svg>
     </button>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>

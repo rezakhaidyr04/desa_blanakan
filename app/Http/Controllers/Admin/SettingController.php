@@ -18,7 +18,13 @@ class SettingController extends Controller
 
     public function update(Request $request)
     {
-        foreach ($request->settings as $key => $value) {
+        // First, set all boolean settings to '0' (unchecked checkboxes are not submitted)
+        Setting::where('type', 'boolean')->each(function ($setting) {
+            $setting->update(['value' => '0']);
+            Cache::forget("setting_{$setting->key}");
+        });
+
+        foreach ($request->settings ?? [] as $key => $value) {
             $setting = Setting::where('key', $key)->first();
             
             if ($setting) {
@@ -29,7 +35,8 @@ class SettingController extends Controller
                     }
                     $value = $request->file("settings.{$key}")->store('settings', 'public');
                 } elseif ($setting->type === 'boolean') {
-                    $value = $request->has("settings.{$key}") ? '1' : '0';
+                    // Checkbox was submitted means it's checked → '1'
+                    $value = '1';
                 }
                 
                 $setting->update(['value' => $value]);

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ServiceRequestController;
 use App\Http\Controllers\Admin\PotentialController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\FinanceController;
 use App\Http\Controllers\AuthController as UserAuthController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserSettingController;
@@ -36,6 +37,7 @@ Route::controller(App\Http\Controllers\PageController::class)->group(function ()
     Route::get('/berita/{slug}', 'beritaDetail')->name('berita.detail');
     Route::get('/galeri', 'galeri')->name('galeri');
     Route::get('/kontak', 'kontak')->name('kontak');
+    Route::get('/keuangan', 'keuangan')->name('keuangan');
     
     // Prosedur Layanan
     Route::get('/prosedur', 'prosedurIndex')->name('prosedur-index');
@@ -55,6 +57,12 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/daftar', [UserAuthController::class, 'showRegisterForm'])->name('register');
     Route::post('/daftar', [UserAuthController::class, 'register'])->name('register.submit');
+
+    // Forgot / Reset Password
+    Route::get('/lupa-password', [UserAuthController::class, 'showForgotPasswordForm'])->name('password.request');
+    Route::post('/lupa-password', [UserAuthController::class, 'sendResetLink'])->name('password.email');
+    Route::get('/reset-password/{token}', [UserAuthController::class, 'showResetPasswordForm'])->name('password.reset');
+    Route::post('/reset-password', [UserAuthController::class, 'resetPassword'])->name('password.update');
 });
 
 Route::middleware('auth')->group(function () {
@@ -71,6 +79,7 @@ Route::post('/kontak', [App\Http\Controllers\ContactController::class, 'submit']
 // Service Request Routes
 Route::get('/layanan/ajukan/{type}', [App\Http\Controllers\ServiceRequestController::class, 'create'])->name('layanan.ajukan');
 Route::post('/layanan/ajukan', [App\Http\Controllers\ServiceRequestController::class, 'store'])->name('layanan.store');
+Route::get('/layanan/sukses/{serviceRequest}', [App\Http\Controllers\ServiceRequestController::class, 'success'])->name('layanan.success');
 Route::get('/layanan/track', [App\Http\Controllers\ServiceRequestController::class, 'track'])->name('layanan.track');
 Route::post('/layanan/check-status', [App\Http\Controllers\ServiceRequestController::class, 'checkStatus'])->name('layanan.check-status');
 
@@ -107,6 +116,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Settings
         Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
         Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
+
+        // Keuangan / APBDes
+        Route::resource('finances', FinanceController::class)->except(['show']);
     });
 });
 

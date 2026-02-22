@@ -76,22 +76,36 @@
                     @endphp
 
                     @if(count($docs) === 0)
-                        <p class="text-sm text-slate-500">Tidak ada dokumen.</p>
+                        <p class="text-sm text-slate-500">Tidak ada dokumen dilampirkan.</p>
                     @else
-                        <div class="space-y-2">
+                        <div class="space-y-3">
                             @foreach($docs as $doc)
                                 @php
                                     $path = $doc['path'] ?? null;
                                     $name = $doc['name'] ?? 'Dokumen';
+                                    $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+                                    $isImage = in_array($ext, ['jpg', 'jpeg', 'png', 'webp']);
                                 @endphp
-                                <div class="flex items-center justify-between gap-3 p-3 rounded-lg bg-slate-50 border border-slate-200">
-                                    <div class="min-w-0">
-                                        <p class="text-sm font-medium text-slate-800 truncate">{{ $name }}</p>
-                                        <p class="text-xs text-slate-500 truncate">{{ $path }}</p>
-                                    </div>
-                                    @if($path)
-                                        <a href="{{ Storage::url($path) }}" target="_blank" class="px-3 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 text-sm">Lihat</a>
+                                <div class="rounded-xl border border-slate-200 overflow-hidden bg-slate-50">
+                                    @if($isImage && $path)
+                                        <img src="{{ Storage::url($path) }}" alt="{{ $name }}" class="w-full max-h-48 object-cover">
                                     @endif
+                                    <div class="flex items-center justify-between gap-3 px-3 py-2">
+                                        <div class="min-w-0 flex items-center gap-2">
+                                            @if(!$isImage)
+                                                <svg class="w-4 h-4 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
+                                            @else
+                                                <svg class="w-4 h-4 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                            @endif
+                                            <p class="text-sm font-medium text-slate-800 truncate">{{ $name }}</p>
+                                        </div>
+                                        @if($path)
+                                            <a href="{{ Storage::url($path) }}" target="_blank"
+                                               class="flex-shrink-0 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-teal-50 hover:border-teal-300 hover:text-teal-700 text-xs font-medium transition-colors">
+                                                {{ $isImage ? 'Lihat Foto' : 'Unduh' }}
+                                            </a>
+                                        @endif
+                                    </div>
                                 </div>
                             @endforeach
                         </div>

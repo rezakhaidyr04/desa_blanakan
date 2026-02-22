@@ -61,13 +61,24 @@ class ServiceRequestController extends Controller
         $validated = $request->validate([
             'service_type' => 'required|in:ektp,kk,akta,skck',
             'name' => 'required|string|max:255',
-            'nik' => 'required|string|size:16',
+            'nik' => 'required|string|size:16|regex:/^[0-9]{16}$/',
             'phone' => 'required|string|max:20',
             'email' => 'nullable|email|max:255',
-            'address' => 'required|string',
+            'address' => 'required|string|min:10',
             'purpose' => 'nullable|string',
             'notes' => 'nullable|string',
-            'documents.*' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048'
+            'documents' => 'nullable|array',
+            'documents.*' => 'file|mimes:pdf,jpg,jpeg,png|max:2048',
+        ], [
+            'name.required' => 'Nama lengkap wajib diisi.',
+            'nik.required' => 'NIK wajib diisi.',
+            'nik.size' => 'NIK harus tepat 16 digit.',
+            'nik.regex' => 'NIK hanya boleh berisi angka (16 digit).',
+            'phone.required' => 'Nomor telepon wajib diisi.',
+            'address.required' => 'Alamat lengkap wajib diisi.',
+            'address.min' => 'Alamat terlalu singkat, harap isi alamat lengkap.',
+            'documents.*.mimes' => 'Format dokumen tidak valid. Gunakan PDF, JPG, atau PNG.',
+            'documents.*.max' => 'Ukuran file terlalu besar. Maksimal 2MB per file.',
         ]);
 
         $documents = [];
@@ -86,9 +97,14 @@ class ServiceRequestController extends Controller
         // Auto-approve: langsung masuk tahap diproses (tanpa menunggu persetujuan admin)
         $validated['status'] = 'processing';
 
-        ServiceRequest::create($validated);
+        $serviceRequest = ServiceRequest::create($validated);
 
-        return redirect()->route('layanan')->with('success', 'Pengajuan layanan berhasil dikirim! Kami akan segera memprosesnya.');
+        return redirect()->route('layanan.success', $serviceRequest);
+    }
+
+    public function success(ServiceRequest $serviceRequest)
+    {
+        return view('layanan-success', compact('serviceRequest'));
     }
 
     public function track()

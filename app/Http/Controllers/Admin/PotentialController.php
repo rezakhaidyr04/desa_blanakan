@@ -24,14 +24,14 @@ class PotentialController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:255',
+            'name' => 'required|max:255',
             'category' => 'required',
             'description' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
-        $data = $request->only(['title', 'category', 'description', 'details', 'location', 'contact', 'order']);
-        $data['slug'] = Str::slug($request->title);
+        $data = $request->only(['name', 'category', 'description', 'location', 'contact', 'order']);
+        $data['slug'] = Str::slug($request->name);
         $data['is_active'] = $request->has('is_active');
         $data['order'] = $data['order'] ?? 0;
 
@@ -53,14 +53,14 @@ class PotentialController extends Controller
     public function update(Request $request, Potential $potential)
     {
         $request->validate([
-            'title' => 'required|max:255',
+            'name' => 'required|max:255',
             'category' => 'required',
             'description' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
-        $data = $request->only(['title', 'category', 'description', 'details', 'location', 'contact', 'order']);
-        $data['slug'] = Str::slug($request->title);
+        $data = $request->only(['name', 'category', 'description', 'location', 'contact', 'order']);
+        $data['slug'] = Str::slug($request->name);
         $data['is_active'] = $request->has('is_active');
 
         if ($request->hasFile('image')) {

@@ -61,6 +61,11 @@
                     Potensi Desa
                 </a>
 
+                <a href="{{ route('admin.finances.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg {{ request()->routeIs('admin.finances.*') ? 'bg-teal-600 text-white' : 'text-slate-300 hover:bg-slate-700' }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    Keuangan Desa
+                </a>
+
                 <p class="px-4 pt-4 pb-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">Komunikasi</p>
 
                 <a href="{{ route('admin.messages.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg {{ request()->routeIs('admin.messages.*') ? 'bg-teal-600 text-white' : 'text-slate-300 hover:bg-slate-700' }}">

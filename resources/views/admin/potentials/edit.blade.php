@@ -15,8 +15,8 @@
             @method('PUT')
             
             <div>
-                <label for="title" class="block text-sm font-medium text-slate-700 mb-2">Nama Potensi *</label>
-                <input type="text" id="title" name="title" value="{{ old('title', $potential->title) }}" required
+                <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Nama Potensi *</label>
+                <input type="text" id="name" name="name" value="{{ old('name', $potential->name) }}" required
                     class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
             </div>
 
@@ -26,11 +26,9 @@
                     class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
                     <option value="pertanian" {{ $potential->category == 'pertanian' ? 'selected' : '' }}>🌾 Pertanian</option>
                     <option value="perikanan" {{ $potential->category == 'perikanan' ? 'selected' : '' }}>🐟 Perikanan</option>
-                    <option value="peternakan" {{ $potential->category == 'peternakan' ? 'selected' : '' }}>🐄 Peternakan</option>
                     <option value="umkm" {{ $potential->category == 'umkm' ? 'selected' : '' }}>🏪 UMKM</option>
                     <option value="wisata" {{ $potential->category == 'wisata' ? 'selected' : '' }}>🏖️ Wisata</option>
                     <option value="kerajinan" {{ $potential->category == 'kerajinan' ? 'selected' : '' }}>🎨 Kerajinan</option>
-                    <option value="kuliner" {{ $potential->category == 'kuliner' ? 'selected' : '' }}>🍽️ Kuliner</option>
                     <option value="lainnya" {{ $potential->category == 'lainnya' ? 'selected' : '' }}>📦 Lainnya</option>
                 </select>
             </div>
@@ -38,7 +36,7 @@
             @if($potential->image)
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-2">Gambar Saat Ini</label>
-                    <img src="{{ asset('storage/' . $potential->image) }}" alt="{{ $potential->title }}" class="w-48 h-32 object-cover rounded-lg">
+                    <img src="{{ asset('storage/' . $potential->image) }}" alt="{{ $potential->name }}" class="w-48 h-32 object-cover rounded-lg">
                 </div>
             @endif
 
@@ -52,12 +50,6 @@
                 <label for="description" class="block text-sm font-medium text-slate-700 mb-2">Deskripsi *</label>
                 <textarea id="description" name="description" rows="4" required
                     class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">{{ old('description', $potential->description) }}</textarea>
-            </div>
-
-            <div>
-                <label for="details" class="block text-sm font-medium text-slate-700 mb-2">Detail Tambahan</label>
-                <textarea id="details" name="details" rows="4"
-                    class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">{{ old('details', $potential->details) }}</textarea>
             </div>
 
             <div class="grid grid-cols-2 gap-4">

@@ -51,17 +51,17 @@
             </div>
 
             <div>
-                <label for="procedures" class="block text-sm font-medium text-slate-700 mb-2">Prosedur/Langkah</label>
-                <textarea id="procedures" name="procedures" rows="5"
+                <label for="procedure" class="block text-sm font-medium text-slate-700 mb-2">Prosedur/Langkah</label>
+                <textarea id="procedure" name="procedure" rows="5"
                     class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                    placeholder="Satu langkah per baris:&#10;Datang ke kantor desa&#10;Mengisi formulir&#10;Menyerahkan berkas">{{ old('procedures') }}</textarea>
+                    placeholder="Satu langkah per baris:&#10;Datang ke kantor desa&#10;Mengisi formulir&#10;Menyerahkan berkas">{{ old('procedure') }}</textarea>
                 <p class="mt-1 text-sm text-slate-500">Tulis satu langkah per baris</p>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label for="processing_time" class="block text-sm font-medium text-slate-700 mb-2">Waktu Proses</label>
-                    <input type="text" id="processing_time" name="processing_time" value="{{ old('processing_time') }}"
+                    <label for="duration" class="block text-sm font-medium text-slate-700 mb-2">Waktu Proses</label>
+                    <input type="text" id="duration" name="duration" value="{{ old('duration') }}"
                         class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                         placeholder="Contoh: 1-3 hari kerja">
                 </div>

@@ -59,6 +59,24 @@
 
     <!-- Form -->
     <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+
+        {{-- Error Summary --}}
+        @if($errors->any())
+        <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+            <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <div>
+                    <p class="text-sm font-semibold text-red-800 mb-1">Harap perbaiki kesalahan berikut:</p>
+                    <ul class="text-sm text-red-700 space-y-1 list-disc list-inside">
+                        @foreach($errors->all() as $err)
+                            <li>{{ $err }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @endif
+
         <form action="{{ route('layanan.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6" data-loading-form>
             @csrf
             <input type="hidden" name="service_type" value="{{ $type }}">
@@ -77,9 +95,12 @@
             <!-- NIK -->
             <div>
                 <label for="nik" class="block text-sm font-semibold text-slate-700 mb-2">NIK <span class="text-red-500">*</span></label>
-                <input type="text" id="nik" name="nik" value="{{ old('nik') }}" required maxlength="16" pattern="[0-9]{16}"
-                    class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
-                    placeholder="16 digit NIK">
+                <div class="relative">
+                    <input type="text" id="nik" name="nik" value="{{ old('nik') }}" required maxlength="16" inputmode="numeric"
+                        class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all pr-24"
+                        placeholder="16 digit NIK">
+                    <span id="nik-remaining" class="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-slate-400">16 digit</span>
+                </div>
                 @error('nik')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
@@ -139,19 +160,30 @@
 
             <!-- Upload Dokumen -->
             <div>
-                <label for="documents" class="block text-sm font-semibold text-slate-700 mb-2">Upload Dokumen Persyaratan</label>
-                <div class="border-2 border-dashed border-slate-300 rounded-xl p-6 text-center hover:border-teal-500 transition-colors">
+                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                    Upload Dokumen Persyaratan
+                    <span class="text-slate-400 font-normal ml-1">(Opsional, maks. 2MB/file)</span>
+                </label>
+                <div id="drop-zone" class="border-2 border-dashed border-slate-300 rounded-xl p-6 text-center hover:border-teal-500 hover:bg-teal-50/30 transition-all cursor-pointer">
                     <input type="file" id="documents" name="documents[]" multiple accept=".pdf,.jpg,.jpeg,.png"
-                        class="hidden" onchange="displayFileNames(this)">
-                    <label for="documents" class="cursor-pointer">
-                        <svg class="mx-auto h-12 w-12 text-slate-400 mb-3" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        class="hidden" onchange="handleFiles(this.files)">
+                    <label for="documents" class="cursor-pointer block">
+                        <svg class="mx-auto h-10 w-10 text-slate-400 mb-2" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <p class="text-sm text-slate-600"><span class="font-semibold text-teal-600">Klik untuk upload</span> atau drag and drop</p>
-                        <p class="text-xs text-slate-500 mt-1">PDF, JPG, JPEG, PNG (max. 2MB per file)</p>
+                        <p class="text-sm text-slate-600"><span class="font-semibold text-teal-600">Klik untuk pilih file</span> atau seret ke sini</p>
+                        <div class="flex items-center justify-center gap-2 mt-2">
+                            <span class="px-2 py-0.5 bg-slate-100 rounded text-xs text-slate-500 font-mono">PDF</span>
+                            <span class="px-2 py-0.5 bg-slate-100 rounded text-xs text-slate-500 font-mono">JPG</span>
+                            <span class="px-2 py-0.5 bg-slate-100 rounded text-xs text-slate-500 font-mono">JPEG</span>
+                            <span class="px-2 py-0.5 bg-slate-100 rounded text-xs text-slate-500 font-mono">PNG</span>
+                        </div>
                     </label>
                 </div>
-                <div id="file-list" class="mt-3 space-y-2"></div>
+                <div id="file-list" class="mt-3 grid grid-cols-1 gap-2"></div>
+                @error('documents')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
                 @error('documents.*')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
@@ -185,24 +217,85 @@
 </div>
 
 <script>
-function displayFileNames(input) {
+function handleFiles(files) {
     const fileList = document.getElementById('file-list');
     fileList.innerHTML = '';
-    
-    if (input.files.length > 0) {
-        Array.from(input.files).forEach(file => {
-            const div = document.createElement('div');
-            div.className = 'flex items-center gap-2 text-sm text-slate-600 bg-slate-50 px-3 py-2 rounded-lg';
-            div.innerHTML = `
-                <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-                <span>${file.name}</span>
-                <span class="text-xs text-slate-400 ml-auto">(${(file.size / 1024).toFixed(1)} KB)</span>
-            `;
-            fileList.appendChild(div);
-        });
+    const MAX_SIZE = 2 * 1024 * 1024; // 2MB
+    const ALLOWED = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+    let hasError = false;
+
+    Array.from(files).forEach((file, i) => {
+        const isImage = file.type.startsWith('image/');
+        const isAllowed = ALLOWED.includes(file.type.toLowerCase()) || file.name.match(/\.(pdf|jpg|jpeg|png)$/i);
+        const isTooBig = file.size > MAX_SIZE;
+
+        const div = document.createElement('div');
+        div.className = `flex items-center gap-3 px-3 py-2 rounded-xl border ${isTooBig || !isAllowed ? 'bg-red-50 border-red-200' : 'bg-slate-50 border-slate-200'}`;
+
+        let previewHtml = '';
+        if (isImage && !isTooBig && isAllowed) {
+            const url = URL.createObjectURL(file);
+            previewHtml = `<img src="${url}" alt="" class="w-10 h-10 object-cover rounded-lg flex-shrink-0" onload="URL.revokeObjectURL(this.src)">`;
+        } else {
+            const color = isTooBig || !isAllowed ? 'text-red-400' : 'text-teal-600';
+            previewHtml = `<div class="w-10 h-10 rounded-lg bg-slate-200 flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 ${color}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div>`;
+        }
+
+        let statusHtml = '';
+        if (!isAllowed) { statusHtml = `<span class="text-xs text-red-600 ml-auto">Format tidak valid</span>`; hasError = true; }
+        else if (isTooBig) { statusHtml = `<span class="text-xs text-red-600 ml-auto">Terlalu besar (${(file.size/1024/1024).toFixed(1)} MB)</span>`; hasError = true; }
+        else { statusHtml = `<span class="text-xs text-slate-400 ml-auto">${(file.size/1024).toFixed(0)} KB</span>`; }
+
+        div.innerHTML = `${previewHtml}<div class="flex-1 min-w-0"><p class="text-sm font-medium text-slate-700 truncate">${file.name}</p></div>${statusHtml}`;
+        fileList.appendChild(div);
+    });
+
+    // Update drop zone style
+    const dropZone = document.getElementById('drop-zone');
+    if (files.length > 0 && !hasError) {
+        dropZone.classList.add('border-teal-400', 'bg-teal-50/40');
+        dropZone.classList.remove('border-slate-300');
     }
+}
+
+// Drag and drop
+const dz = document.getElementById('drop-zone');
+if (dz) {
+    dz.addEventListener('dragover', (e) => { e.preventDefault(); dz.classList.add('border-teal-500', 'bg-teal-50/50'); });
+    dz.addEventListener('dragleave', () => { dz.classList.remove('border-teal-500', 'bg-teal-50/50'); });
+    dz.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dz.classList.remove('border-teal-500', 'bg-teal-50/50');
+        const input = document.getElementById('documents');
+        const dt = e.dataTransfer;
+        // Transfer files to the input (trick: create DataTransfer)
+        try {
+            const dataTransfer = new DataTransfer();
+            Array.from(dt.files).forEach(f => dataTransfer.items.add(f));
+            input.files = dataTransfer.files;
+            handleFiles(input.files);
+        } catch(err) {
+            handleFiles(dt.files);
+        }
+    });
+}
+
+// NIK input: only allow numbers
+const nikInput = document.getElementById('nik');
+if (nikInput) {
+    nikInput.addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '').slice(0, 16);
+        const remainingEl = document.getElementById('nik-remaining');
+        if (remainingEl) remainingEl.textContent = 16 - this.value.length + ' digit lagi';
+        if (this.value.length === 16) {
+            this.classList.add('border-green-400', 'focus:ring-green-500');
+            this.classList.remove('border-slate-300');
+            if (remainingEl) remainingEl.textContent = '✓ Valid';
+        } else {
+            this.classList.remove('border-green-400', 'focus:ring-green-500');
+            this.classList.add('border-slate-300');
+        }
+    });
 }
 </script>
 @endsection
