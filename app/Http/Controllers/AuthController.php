@@ -34,7 +34,7 @@ class AuthController extends Controller
 
             $target = Auth::user()?->is_admin
                 ? route('admin.settings.index')
-                : route('user.settings');
+                : route('home');
 
             return redirect()->intended($target);
         }
