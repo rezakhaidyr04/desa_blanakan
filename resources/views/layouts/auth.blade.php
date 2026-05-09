@@ -18,7 +18,7 @@
         /* Background — lembut, tidak distraktif */
         .auth-bg {
             min-height:100vh;
-            background: linear-gradient(150deg, #f0fdf4 0%, #dcfce7 40%, #d1fae5 70%, #ecfdf5 100%);
+            background: linear-gradient(150deg, #f5f1f1 0%, #dcfce7 40%, #d1fae5 70%, #ecfdf5 100%);
             display:flex; align-items:center; justify-content:center;
             padding:1.5rem 1rem;
             position:relative; overflow:hidden;
@@ -27,7 +27,7 @@
         .auth-bg::before {
             content:''; position:absolute;
             width:520px; height:520px; border-radius:50%;
-            background:rgba(16,185,129,0.07);
+            background:rgba(37, 33, 33, 0.07);
             top:-120px; right:-100px; pointer-events:none;
         }
         .auth-bg::after {
@@ -70,7 +70,7 @@
             border:1.5px solid #d1fae5;
             border-radius:1.5rem;
             padding:2.5rem 2.25rem;
-            box-shadow:0 4px 32px rgba(5,150,105,0.1), 0 1px 4px rgba(0,0,0,0.05);
+            box-shadow:0 4px 32px rgba(232, 11, 11, 0.1), 0 1px 4px rgba(0,0,0,0.05);
         }
 
         .card-title { font-size:1.5rem; font-weight:800; color:#065f46; margin-bottom:0.2rem; }

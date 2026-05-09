@@ -273,7 +273,7 @@
                 </div>
                 
                 <div class="text-center text-sm text-slate-500">
-                    &copy; 2024 Pemerintah Desa Blanakan. All rights reserved.
+                    &copy; 2026 Pemerintah Desa Blanakan. All rights reserved.
                 </div>
 
             </div>
