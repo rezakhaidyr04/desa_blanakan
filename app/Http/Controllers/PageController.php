@@ -10,6 +10,8 @@ use App\Models\Potential;
 use App\Models\Official;
 use App\Models\Setting;
 use App\Models\Finance;
+use App\Models\VillageStatistic;
+use App\Models\Announcement;
 
 class PageController extends Controller
 {
@@ -22,13 +24,15 @@ class PageController extends Controller
     {
         $sliders = Slider::where('is_active', true)->orderBy('order')->get();
         $settings = $this->getSettings();
-        return view('home', compact('sliders', 'settings'));
+        $statistics = VillageStatistic::forHome();
+
+        return view('home', compact('sliders', 'settings', 'statistics'));
     }
 
     public function profil()
     {
         $settings = $this->getSettings();
-        $officials = Official::where('is_active', true)->orderBy('order')->get();
+        $officials = Official::forProfile();
         return view('profil', compact('settings', 'officials'));
     }
 
@@ -57,6 +61,14 @@ class PageController extends Controller
         $featured = \App\Models\Post::latest()->first();
         $posts = \App\Models\Post::latest()->where('id', '!=', $featured?->id)->paginate(9);
         return view('berita', compact('featured', 'posts'));
+    }
+
+    public function pengumuman()
+    {
+        $announcements = Announcement::publicItems('pengumuman');
+        $agendas = Announcement::publicItems('agenda');
+
+        return view('pengumuman', compact('announcements', 'agendas'));
     }
 
     public function beritaDetail($slug)

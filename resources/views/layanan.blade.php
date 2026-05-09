@@ -104,28 +104,6 @@ $prosedurRoutes = [
     </div>
     @endif
 
-    <!-- CTA Section -->
-    <div class="mt-20 bg-gradient-to-br from-teal-600 to-teal-500 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
-         <div class="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-white rounded-full mix-blend-soft-light filter blur-3xl opacity-20"></div>
-         <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-64 h-64 bg-white rounded-full mix-blend-soft-light filter blur-3xl opacity-20"></div>
-         <div class="relative z-10">
-            <h3 class="text-2xl md:text-3xl font-bold mb-4">Sudah Mengajukan Layanan?</h3>
-            <p class="text-teal-50 max-w-2xl mx-auto mb-8">
-                Lacak status pengajuan layanan Anda dengan mudah menggunakan NIK.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ route('layanan.track') }}" class="inline-block px-8 py-3 bg-white text-teal-600 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-                    <svg class="w-5 h-5 inline-block mr-2 -mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
-                    </svg>
-                    Lacak Status Pengajuan
-                </a>
-                <a href="{{ route('kontak') }}" class="inline-block px-8 py-3 bg-teal-700 text-white rounded-xl font-bold transition-all hover:bg-teal-800">
-                    Hubungi Kami
-                </a>
-            </div>
-         </div>
-    </div>
-</div>
 @endsection
+
 

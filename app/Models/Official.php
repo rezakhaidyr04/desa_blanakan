@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Official extends Model
 {
@@ -27,5 +28,13 @@ class Official extends Model
     public function scopeActive($query)
     {
         return $query->where('is_active', true)->orderBy('order');
+    }
+
+    /**
+     * Public profile data, kept behind one method so the controller can stay thin.
+     */
+    public static function forProfile(): Collection
+    {
+        return static::query()->active()->get();
     }
 }

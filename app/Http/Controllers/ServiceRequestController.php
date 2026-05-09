@@ -8,8 +8,24 @@ use Illuminate\Support\Facades\Storage;
 
 class ServiceRequestController extends Controller
 {
-    public function create($type)
+    public function create($slug)
     {
+        // Map slug ke service_type yang digunakan di database
+        $slugToTypeMap = [
+            'pembuatan-ektp' => 'ektp',
+            'kartu-keluarga' => 'kk',
+            'akta-kelahiran' => 'akta',
+            'surat-keterangan-catatan-kepolisian' => 'skck',
+            'surat-pengantar' => 'surat-pengantar',
+            'surat-keterangan-tidak-mampu' => 'sktm',
+        ];
+
+        if (!isset($slugToTypeMap[$slug])) {
+            abort(404);
+        }
+
+        $type = $slugToTypeMap[$slug];
+
         $serviceTypes = [
             'ektp' => [
                 'title' => 'Pembuatan e-KTP',
@@ -44,11 +60,23 @@ class ServiceRequestController extends Controller
                     'Surat Pengantar RT/RW'
                 ]
             ],
+            'surat-pengantar' => [
+                'title' => 'Surat Pengantar',
+                'requirements' => [
+                    'KTP asli',
+                    'Kartu Keluarga',
+                    'Menjelaskan keperluan surat'
+                ]
+            ],
+            'sktm' => [
+                'title' => 'Surat Keterangan Tidak Mampu',
+                'requirements' => [
+                    'KTP dan KK',
+                    'Surat pengantar dari RT/RW',
+                    'Dokumen pendukung kondisi ekonomi'
+                ]
+            ],
         ];
-
-        if (!isset($serviceTypes[$type])) {
-            abort(404);
-        }
 
         return view('layanan-form', [
             'type' => $type,

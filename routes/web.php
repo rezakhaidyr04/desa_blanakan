@@ -34,6 +34,7 @@ Route::controller(App\Http\Controllers\PageController::class)->group(function ()
     Route::get('/potensi', 'potensi')->name('potensi');
     Route::get('/layanan', 'layanan')->name('layanan');
     Route::get('/berita', 'berita')->name('berita');
+    Route::get('/pengumuman', 'pengumuman')->name('pengumuman');
     Route::get('/berita/{slug}', 'beritaDetail')->name('berita.detail');
     Route::get('/galeri', 'galeri')->name('galeri');
     Route::get('/kontak', 'kontak')->name('kontak');
@@ -49,6 +50,8 @@ Route::controller(App\Http\Controllers\PageController::class)->group(function ()
 
 // Global search (JSON)
 Route::get('/search', SearchController::class)->name('search');
+Route::get('/dokumen', [App\Http\Controllers\PublicDocumentController::class, 'index'])->name('dokumen');
+Route::get('/dokumen/{document}/download', [App\Http\Controllers\PublicDocumentController::class, 'download'])->name('dokumen.download');
 
 // User Auth Routes
 Route::middleware('guest')->group(function () {

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Berita Desa Blanakan')
+@section('meta_description', 'Berita terbaru seputar kegiatan pemerintahan, pembangunan, dan kemasyarakatan Desa Blanakan.')
+
 @section('content')
 <div class="bg-slate-50 py-16 md:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

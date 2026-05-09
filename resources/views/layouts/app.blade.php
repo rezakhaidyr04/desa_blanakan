@@ -3,7 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Desa Blanakan - Kecamatan Blanakan, Subang</title>
+    <title>@yield('title', 'Desa Blanakan - Kecamatan Blanakan, Subang')</title>
+    <meta name="description" content="@yield('meta_description', 'Portal resmi Desa Blanakan, Kecamatan Blanakan, Kabupaten Subang.')">
+    <meta name="theme-color" content="#0f766e">
+    <meta property="og:title" content="@yield('title', 'Desa Blanakan - Kecamatan Blanakan, Subang')">
+    <meta property="og:description" content="@yield('meta_description', 'Portal resmi Desa Blanakan, Kecamatan Blanakan, Kabupaten Subang.')">
+    <meta property="og:type" content="website">
+    @stack('head')
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,6 +79,8 @@
                             ['route' => 'potensi',   'label' => 'Potensi'],
                             ['route' => 'layanan',   'label' => 'Layanan'],
                             ['route' => 'berita',    'label' => 'Berita'],
+                            ['route' => 'pengumuman','label' => 'Pengumuman'],
+                            ['route' => 'dokumen',   'label' => 'Dokumen'],
                             ['route' => 'galeri',    'label' => 'Galeri'],
                             ['route' => 'keuangan',  'label' => 'Keuangan'],
                             ['route' => 'kontak',    'label' => 'Kontak'],
@@ -180,6 +188,8 @@
                 <a href="{{ route('potensi') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('potensi') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Potensi</a>
                 <a href="{{ route('layanan') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('layanan') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Layanan</a>
                 <a href="{{ route('berita') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('berita') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Berita</a>
+                <a href="{{ route('pengumuman') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('pengumuman') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Pengumuman</a>
+                <a href="{{ route('dokumen') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('dokumen') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Dokumen</a>
                 <a href="{{ route('galeri') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('galeri') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Galeri</a>
                 <a href="{{ route('keuangan') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('keuangan') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Keuangan</a>
                 <a href="{{ route('kontak') }}" class="px-4 py-3 rounded-xl text-sm font-medium {{ request()->routeIs('kontak') ? 'bg-teal-50 text-teal-700' : 'text-slate-600 hover:bg-slate-50' }}">Hubungi Kami</a>
@@ -279,6 +289,13 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281234567890?text=Halo%20Pemerintah%20Desa%20Blanakan,%20saya%20ingin%20bertanya" target="_blank" rel="noopener noreferrer"
+       class="fixed bottom-24 right-8 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all z-40 flex items-center justify-center"
+       aria-label="Hubungi via WhatsApp">
+        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A11.8 11.8 0 0012.06 0C5.43 0 .04 5.39.04 12.02c0 2.11.55 4.17 1.59 5.99L0 24l6.16-1.61a11.97 11.97 0 005.9 1.5h.01c6.63 0 12.02-5.39 12.02-12.02 0-3.2-1.25-6.2-3.57-8.39zM12.07 22.1h-.01c-1.88 0-3.72-.5-5.32-1.45l-.38-.23-3.65.95.98-3.56-.25-.39a9.92 9.92 0 01-1.52-5.36C1.92 6.55 6.32 2.15 12.06 2.15c2.78 0 5.39 1.08 7.35 3.04a9.77 9.77 0 012.86 6.83c0 5.74-4.41 10.08-10.2 10.08zm5.74-7.42c-.31-.16-1.84-.91-2.13-1.02-.29-.11-.5-.16-.71.16-.2.31-.82 1.02-1.01 1.23-.19.2-.37.23-.68.08-.31-.16-1.31-.48-2.49-1.53-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.13-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.2.05-.39-.02-.55-.08-.16-.71-1.71-.98-2.34-.26-.62-.53-.54-.71-.55h-.6c-.2 0-.52.08-.79.39-.27.31-1.04 1.02-1.04 2.49s1.07 2.9 1.22 3.1c.16.2 2.1 3.2 5.1 4.49.71.31 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.84-.75 2.1-1.47.26-.71.26-1.32.18-1.47-.08-.16-.29-.25-.6-.41z"/></svg>
+    </a>
 
     <!-- Back to Top Button -->
     <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-teal-600 hover:bg-teal-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all opacity-0 pointer-events-none z-40 flex items-center justify-center">

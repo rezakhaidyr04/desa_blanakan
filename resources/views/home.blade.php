@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Beranda Desa Blanakan')
+@section('meta_description', 'Portal resmi Desa Blanakan berisi layanan publik, potensi desa, berita, pengumuman, dokumen publik, dan informasi warga.')
+
 @section('content')
 <!-- Hero Section -->
 <div class="relative bg-slate-900 border-b border-slate-700 overflow-hidden">
@@ -111,22 +114,18 @@
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
-            <div class="p-6">
-                <div class="text-4xl md:text-5xl font-bold text-teal-400 mb-2">3</div>
-                <div class="text-slate-400 font-medium">Dusun</div>
-            </div>
-            <div class="p-6">
-                <div class="text-4xl md:text-5xl font-bold text-teal-400 mb-2">12k+</div>
-                <div class="text-slate-400 font-medium">Penduduk</div>
-            </div>
-            <div class="p-6">
-                <div class="text-4xl md:text-5xl font-bold text-teal-400 mb-2">56</div>
-                <div class="text-slate-400 font-medium">RT/RW</div>
-            </div>
-            <div class="p-6">
-                <div class="text-4xl md:text-5xl font-bold text-teal-400 mb-2">24h</div>
-                <div class="text-slate-400 font-medium">Layanan Digital</div>
-            </div>
+            @forelse($statistics as $statistic)
+                <div class="p-6">
+                    <div class="text-4xl md:text-5xl font-bold text-teal-400 mb-2">
+                        {{ $statistic->display_value }}
+                    </div>
+                    <div class="text-slate-400 font-medium">{{ $statistic->label }}</div>
+                </div>
+            @empty
+                <div class="col-span-2 md:col-span-4 p-6 text-slate-300">
+                    Statistik desa belum tersedia.
+                </div>
+            @endforelse
         </div>
     </div>
 </div>

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Profil Desa Blanakan')
+@section('meta_description', 'Kenali sejarah, visi misi, dan struktur pemerintahan Desa Blanakan, Kecamatan Blanakan, Kabupaten Subang.')
+
 @section('content')
 <!-- Header -->
 <div class="bg-slate-50 py-16 md:py-24 border-b border-slate-200">
@@ -118,58 +121,102 @@
 <!-- Struktur Pemerintahan (Dynamic) -->
 <div class="py-20 bg-white border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Struktur Pemerintahan</h2>
-        <div class="w-20 h-1.5 bg-teal-500 mx-auto rounded-full mb-16"></div>
+        <div class="max-w-3xl mx-auto mb-16">
+            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-teal-50 text-teal-700 text-sm font-semibold mb-4">Struktur Organisasi</span>
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">Perangkat Desa yang Aktif</h2>
+            <p class="text-slate-600 leading-relaxed">Data di bawah ini mengambil isi dari panel admin, sehingga foto, jabatan, dan kontak tetap konsisten ketika ada pembaruan.</p>
+        </div>
 
         @if($officials->count())
             @php $head = $officials->first(); $rest = $officials->slice(1); @endphp
 
-            {{-- Kepala Desa --}}
-            <div class="flex justify-center mb-12">
-                <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 w-72 hover:shadow-2xl transition-shadow duration-300">
-                    <div class="w-28 h-28 bg-slate-100 rounded-full mx-auto mb-5 overflow-hidden ring-4 ring-teal-100">
-                        @if($head->photo)
-                            <img src="{{ \Illuminate\Support\Str::startsWith($head->photo, 'http') ? $head->photo : asset('storage/' . $head->photo) }}"
-                                 alt="{{ $head->name }}" class="w-full h-full object-cover">
-                        @else
-                            <svg class="w-full h-full text-slate-400 p-3" viewBox="0 0 24 24" fill="currentColor"><path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-                        @endif
+            @php
+                $resolvePhoto = function ($path) {
+                    return $path ? (\Illuminate\Support\Str::startsWith($path, 'http') ? $path : asset('storage/' . $path)) : null;
+                };
+                $getInitials = function ($name) {
+                    $parts = preg_split('/\s+/', trim($name));
+                    $first = strtoupper(substr($parts[0] ?? '', 0, 1));
+                    $last = strtoupper(substr($parts[count($parts) - 1] ?? '', 0, 1));
+                    return trim($first . $last) ?: 'DP';
+                };
+            @endphp
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12 text-left">
+                <div class="lg:col-span-4">
+                    <div class="bg-slate-900 text-white rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-teal-500/20 via-transparent to-cyan-500/10"></div>
+                        <div class="relative z-10">
+                            <div class="w-28 h-28 bg-white/10 rounded-full mx-auto mb-5 overflow-hidden ring-4 ring-white/10 flex items-center justify-center">
+                                @if($resolvePhoto($head->photo))
+                                    <img src="{{ $resolvePhoto($head->photo) }}" alt="{{ $head->name }}" class="w-full h-full object-cover">
+                                @else
+                                    <div class="w-full h-full flex items-center justify-center text-2xl font-bold text-white/90 bg-white/10">{{ $getInitials($head->name) }}</div>
+                                @endif
+                            </div>
+                            <p class="text-teal-300 text-sm font-semibold uppercase tracking-[0.2em] mb-2 text-center">Pimpinan Utama</p>
+                            <h3 class="font-bold text-2xl text-center mb-2">{{ $head->name }}</h3>
+                            <p class="text-teal-100 text-sm font-medium text-center mb-6">{{ $head->position }}</p>
+
+                            <div class="space-y-3 text-sm">
+                                @if($head->phone)
+                                    <a href="tel:{{ $head->phone }}" class="flex items-center gap-3 p-3 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
+                                        <svg class="w-4 h-4 text-teal-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                        <span>{{ $head->phone }}</span>
+                                    </a>
+                                @endif
+                                @if($head->email)
+                                    <a href="mailto:{{ $head->email }}" class="flex items-center gap-3 p-3 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
+                                        <svg class="w-4 h-4 text-teal-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                        <span class="truncate">{{ $head->email }}</span>
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="font-bold text-xl text-slate-900 mb-1">{{ $head->name }}</h3>
-                    <p class="text-teal-600 text-sm font-semibold uppercase tracking-wide mb-3">{{ $head->position }}</p>
-                    @if($head->phone)
-                        <p class="text-slate-500 text-xs flex items-center justify-center gap-1">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                            {{ $head->phone }}
-                        </p>
+                </div>
+
+                <div class="lg:col-span-8">
+                    @if($rest->count())
+                        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                            @foreach($rest as $official)
+                                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-teal-100 transition-all duration-300 text-left">
+                                    <div class="w-20 h-20 bg-slate-100 rounded-full mx-auto mb-4 overflow-hidden ring-2 ring-slate-100 flex items-center justify-center">
+                                        @if($resolvePhoto($official->photo))
+                                            <img src="{{ $resolvePhoto($official->photo) }}" alt="{{ $official->name }}" class="w-full h-full object-cover">
+                                        @else
+                                            <div class="w-full h-full flex items-center justify-center text-lg font-bold text-slate-500 bg-slate-100">{{ $getInitials($official->name) }}</div>
+                                        @endif
+                                    </div>
+                                    <h3 class="font-bold text-slate-900 mb-1 text-center">{{ $official->name }}</h3>
+                                    <p class="text-slate-500 text-sm font-medium text-center mb-4">{{ $official->position }}</p>
+                                    <div class="space-y-2 text-sm">
+                                        @if($official->phone)
+                                            <a href="tel:{{ $official->phone }}" class="flex items-center justify-center gap-2 text-slate-600 hover:text-teal-600 transition-colors">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                                <span>{{ $official->phone }}</span>
+                                            </a>
+                                        @endif
+                                        @if($official->email)
+                                            <a href="mailto:{{ $official->email }}" class="flex items-center justify-center gap-2 text-slate-600 hover:text-teal-600 transition-colors truncate">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                                <span>{{ $official->email }}</span>
+                                            </a>
+                                        @endif
+                                    </div>
+                                    @if($official->bio)
+                                        <p class="text-slate-500 text-sm mt-4 leading-relaxed line-clamp-3">{{ $official->bio }}</p>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
                     @endif
                 </div>
             </div>
-
-            {{-- Rest of officials --}}
-            @if($rest->count())
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-5xl mx-auto">
-                    @foreach($rest as $official)
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg hover:border-teal-100 transition-all duration-300">
-                            <div class="w-20 h-20 bg-slate-100 rounded-full mx-auto mb-4 overflow-hidden ring-2 ring-slate-100">
-                                @if($official->photo)
-                                    <img src="{{ \Illuminate\Support\Str::startsWith($official->photo, 'http') ? $official->photo : asset('storage/' . $official->photo) }}"
-                                         alt="{{ $official->name }}" class="w-full h-full object-cover">
-                                @else
-                                    <svg class="w-full h-full text-slate-400 p-2" viewBox="0 0 24 24" fill="currentColor"><path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-                                @endif
-                            </div>
-                            <h3 class="font-bold text-slate-900 mb-1">{{ $official->name }}</h3>
-                            <p class="text-slate-500 text-sm font-medium">{{ $official->position }}</p>
-                            @if($official->phone)
-                                <p class="text-slate-400 text-xs mt-2">{{ $official->phone }}</p>
-                            @endif
-                        </div>
-                    @endforeach
-                </div>
-            @endif
         @else
-            <p class="text-slate-500">Data perangkat desa belum tersedia.</p>
+            <div class="bg-slate-50 border border-dashed border-slate-200 rounded-3xl p-12 text-slate-500">
+                Data perangkat desa belum tersedia. Silakan lengkapi melalui panel admin agar struktur organisasi tampil di halaman profil.
+            </div>
         @endif
     </div>
 </div>

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Kontak Desa Blanakan')
+@section('meta_description', 'Hubungi Pemerintah Desa Blanakan untuk pertanyaan, saran, aspirasi, dan layanan publik.')
+
 @section('content')
 <div class="min-h-screen bg-slate-50 py-16 md:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -167,6 +170,34 @@
                     </button>
                 </form>
             </div>
+        </div>
+    </div>
+
+    <div class="mt-20 bg-white rounded-3xl border border-slate-100 shadow-sm p-8 md:p-10" x-data="{ open: 0 }">
+        <div class="text-center mb-10">
+            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-slate-100 text-slate-700 text-sm font-semibold mb-3">FAQ</span>
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">Pertanyaan yang sering ditanyakan</h2>
+            <p class="text-slate-600 max-w-2xl mx-auto">Beberapa jawaban singkat untuk membantu warga menemukan informasi lebih cepat tanpa harus menunggu balasan.</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto space-y-4">
+            <template x-for="(item, index) in [
+                { q: 'Bagaimana cara mengajukan layanan online?', a: 'Masuk ke menu Layanan, pilih jenis layanan, lalu isi formulir pengajuan sesuai data KTP.' },
+                { q: 'Berapa lama proses pengajuan surat?', a: 'Waktu proses bergantung pada jenis layanan dan kelengkapan berkas. Informasi estimasi ada di halaman layanan.' },
+                { q: 'Bagaimana cara melacak status pengajuan?', a: 'Gunakan menu Lacak Status pada halaman Layanan dan masukkan NIK pemohon.' },
+                { q: 'Apakah dokumen publik bisa diunduh?', a: 'Bisa. Buka menu Dokumen untuk melihat daftar arsip dan formulir yang tersedia.' },
+                { q: 'Apakah ada kontak WhatsApp resmi?', a: 'Ada. Gunakan tombol WhatsApp hijau yang melayang di kanan bawah halaman.' }
+            ]" :key="index">
+                <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                    <button type="button" class="w-full flex items-center justify-between gap-4 px-5 py-4 text-left bg-slate-50 hover:bg-slate-100 transition-colors" @click="open = open === index ? null : index">
+                        <span class="font-semibold text-slate-900" x-text="item.q"></span>
+                        <svg class="w-5 h-5 text-slate-500 transition-transform" :class="open === index ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div x-show="open === index" x-transition class="px-5 py-4 text-slate-600 bg-white">
+                        <span x-text="item.a"></span>
+                    </div>
+                </div>
+            </template>
         </div>
     </div>
 </div>
